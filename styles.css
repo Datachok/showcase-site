@@ -560,22 +560,49 @@ img {
     text-align: center;
 }
 
-.hero-badge {
-    display: inline-block;
-    padding: 8px 20px;
-    background: rgba(183, 207, 183, 0.3);
-    border: 1px solid rgba(143, 184, 143, 0.3);
-    border-radius: 100px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--leaf-deep);
-    margin-bottom: 28px;
-    letter-spacing: 0.03em;
+.hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
 }
 
-[data-theme="dark"] .hero-badge {
-    background: rgba(74, 122, 74, 0.2);
-    border-color: rgba(106, 187, 106, 0.25);
+.eyebrow-line {
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--leaf-deep);
+    opacity: 0.5;
+}
+
+.eyebrow-text {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--leaf-deep);
+}
+
+[data-theme="dark"] .eyebrow-line {
+    opacity: 0.4;
+}
+
+@keyframes eyebrowLineGrow {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+}
+
+.hero-eyebrow .eyebrow-line {
+    animation: eyebrowLineGrow 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transform-origin: center;
+}
+
+.hero-eyebrow .eyebrow-line:first-child {
+    transform-origin: right;
+}
+
+.hero-eyebrow .eyebrow-line:last-child {
+    transform-origin: left;
 }
 
 .hero h1 {
