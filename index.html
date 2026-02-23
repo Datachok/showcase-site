@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datachoke Studios — Data Engineering, Artfully Crafted</title>
+    <meta name="description" content="Datachoke Studios — We engineer your data layer by layer, like an artichoke. Data Engineering, Analytics & Cloud Infrastructure.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <svg class="logo-icon" viewBox="0 0 40 40" width="40" height="40">
+                    <path d="M20 4 C20 4 12 8 10 16 C8 24 14 32 20 36 C26 32 32 24 30 16 C28 8 20 4 20 4Z" fill="var(--sage)" opacity="0.6"/>
+                    <path d="M20 8 C20 8 14 11 12 17 C10 23 15 29 20 32 C25 29 30 23 28 17 C26 11 20 8 20 8Z" fill="var(--leaf)"/>
+                    <circle cx="20" cy="18" r="4" fill="var(--cream)"/>
+                </svg>
+                <span>datachoke<span class="logo-accent">studios</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="#services" data-i18n="nav.services">Services</a>
+                <a href="#process" data-i18n="nav.process">Process</a>
+                <a href="#about" data-i18n="nav.about">About</a>
+                <a href="#contact" class="nav-cta" data-i18n="nav.cta">Let's Talk</a>
+                <div class="nav-controls">
+                    <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">
+                        <svg class="flag-icon" id="flag-icon" viewBox="0 0 60 40" width="28" height="19">
+                            <!-- FR flag (shown when current lang is FR, click switches to EN) -->
+                            <!-- EN flag (shown when current lang is EN, click switches to FR) -->
+                        </svg>
+                    </button>
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                        <div class="toggle-track">
+                            <div class="toggle-thumb">
+                                <svg class="toggle-sun" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                                    <circle cx="12" cy="12" r="5"/>
+                                    <g stroke="currentColor" stroke-width="2" fill="none">
+                                        <line x1="12" y1="1" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="23"/>
+                                        <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
+                                        <line x1="1" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="23" y2="12"/>
+                                        <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
+                                    </g>
+                                </svg>
+                                <svg class="toggle-moon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                                </svg>
+                            </div>
+                            <div class="toggle-stars">
+                                <span></span><span></span><span></span>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <div class="nav-controls-mobile">
+                <button class="lang-toggle" id="lang-toggle-mobile" aria-label="Switch language">
+                    <svg class="flag-icon" id="flag-icon-mobile" viewBox="0 0 60 40" width="28" height="19"></svg>
+                </button>
+                <button class="theme-toggle" id="theme-toggle-mobile" aria-label="Toggle dark mode">
+                    <div class="toggle-track">
+                        <div class="toggle-thumb">
+                            <svg class="toggle-sun" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                                <circle cx="12" cy="12" r="5"/>
+                                <g stroke="currentColor" stroke-width="2" fill="none">
+                                    <line x1="12" y1="1" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="23"/>
+                                    <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
+                                    <line x1="1" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="23" y2="12"/>
+                                    <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
+                                </g>
+                            </svg>
+                            <svg class="toggle-moon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                            </svg>
+                        </div>
+                        <div class="toggle-stars">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </button>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#services" data-i18n="nav.services">Services</a>
+        <a href="#process" data-i18n="nav.process">Process</a>
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#contact" class="nav-cta" data-i18n="nav.cta">Let's Talk</a>
+    </div>
+
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge" data-i18n="hero.badge">Data Engineering Studio</div>
+            <h1 data-i18n-html="hero.title">
+                We peel back complexity,<br>
+                <span class="hero-accent">layer by layer.</span>
+            </h1>
+            <p class="hero-sub" data-i18n="hero.sub">
+                Like an artichoke reveals its heart through patience and precision,
+                we strip away data chaos to uncover the insights at your core.
+            </p>
+            <div class="hero-actions">
+                <a href="#services" class="btn btn-primary" data-i18n="hero.cta1">Discover our craft</a>
+                <a href="#contact" class="btn btn-ghost" data-i18n="hero.cta2">Start a project</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="services.tag">What we cultivate</span>
+                <h2 data-i18n-html="services.title">Every layer of your data,<br>carefully <em>engineered</em>.</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" data-reveal>
+                    <div class="service-number">01</div>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" width="48" height="48">
+                            <path d="M8 36V20L24 8L40 20V36" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M16 36V24H32V36" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <line x1="24" y1="24" x2="24" y2="36" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="services.s1.title">Data Architecture</h3>
+                    <p data-i18n="services.s1.desc">We design robust, scalable data architectures that grow with your ambitions. From data lakes to warehouses, we build foundations that last.</p>
+                </div>
+                <div class="service-card" data-reveal>
+                    <div class="service-number">02</div>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" width="48" height="48">
+                            <circle cx="12" cy="24" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <circle cx="36" cy="12" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <circle cx="36" cy="36" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <line x1="16" y1="22" x2="32" y2="14" stroke="currentColor" stroke-width="2"/>
+                            <line x1="16" y1="26" x2="32" y2="34" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="services.s2.title">Pipeline Engineering</h3>
+                    <p data-i18n="services.s2.desc">Real-time or batch, we craft data pipelines that are reliable, observable, and elegant. Your data flows like it was always meant to.</p>
+                </div>
+                <div class="service-card" data-reveal>
+                    <div class="service-number">03</div>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" width="48" height="48">
+                            <rect x="8" y="8" width="32" height="32" rx="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <line x1="8" y1="20" x2="40" y2="20" stroke="currentColor" stroke-width="2"/>
+                            <line x1="20" y1="20" x2="20" y2="40" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="services.s3.title">Cloud & Infrastructure</h3>
+                    <p data-i18n="services.s3.desc">AWS, GCP, Azure — we speak fluent cloud. We deploy and optimize your data infrastructure with IaC, Kubernetes, and battle-tested DevOps practices.</p>
+                </div>
+                <div class="service-card" data-reveal>
+                    <div class="service-number">04</div>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" width="48" height="48">
+                            <path d="M24 8L8 18V34L24 40L40 34V18L24 8Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M24 8V24L40 18" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M24 24L8 18" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <line x1="24" y1="24" x2="24" y2="40" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="services.s4.title">Analytics & BI</h3>
+                    <p data-i18n="services.s4.desc">Dashboards that tell stories, metrics that drive decisions. We transform raw data into visual narratives your entire team can understand.</p>
+                </div>
+                <div class="service-card" data-reveal>
+                    <div class="service-number">05</div>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" width="48" height="48">
+                            <path d="M12 36C12 36 12 24 24 24C36 24 36 12 36 12" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <circle cx="12" cy="36" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <circle cx="36" cy="12" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="services.s5.title">Data Strategy</h3>
+                    <p data-i18n="services.s5.desc">Not sure where to start? We audit your data maturity, map your needs, and chart a pragmatic roadmap to data excellence.</p>
+                </div>
+                <div class="service-card service-card-cta" data-reveal>
+                    <div class="service-cta-inner">
+                        <h3 data-i18n="services.cta.title">Got a data challenge?</h3>
+                        <p data-i18n="services.cta.desc">Let's peel it apart together.</p>
+                        <a href="#contact" class="btn btn-primary" data-i18n="services.cta.btn">Get in touch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="marquee-section">
+        <div class="marquee">
+            <div class="marquee-track">
+                <span>Spark</span>
+                <span class="marquee-dot"></span>
+                <span>Airflow</span>
+                <span class="marquee-dot"></span>
+                <span>dbt</span>
+                <span class="marquee-dot"></span>
+                <span>Snowflake</span>
+                <span class="marquee-dot"></span>
+                <span>BigQuery</span>
+                <span class="marquee-dot"></span>
+                <span>Kafka</span>
+                <span class="marquee-dot"></span>
+                <span>Terraform</span>
+                <span class="marquee-dot"></span>
+                <span>Kubernetes</span>
+                <span class="marquee-dot"></span>
+                <span>Python</span>
+                <span class="marquee-dot"></span>
+                <span>Databricks</span>
+                <span class="marquee-dot"></span>
+                <span>Redshift</span>
+                <span class="marquee-dot"></span>
+                <span>Fivetran</span>
+                <span class="marquee-dot"></span>
+                <span>Spark</span>
+                <span class="marquee-dot"></span>
+                <span>Airflow</span>
+                <span class="marquee-dot"></span>
+                <span>dbt</span>
+                <span class="marquee-dot"></span>
+                <span>Snowflake</span>
+                <span class="marquee-dot"></span>
+                <span>BigQuery</span>
+                <span class="marquee-dot"></span>
+                <span>Kafka</span>
+                <span class="marquee-dot"></span>
+                <span>Terraform</span>
+                <span class="marquee-dot"></span>
+                <span>Kubernetes</span>
+                <span class="marquee-dot"></span>
+                <span>Python</span>
+                <span class="marquee-dot"></span>
+                <span>Databricks</span>
+                <span class="marquee-dot"></span>
+                <span>Redshift</span>
+                <span class="marquee-dot"></span>
+                <span>Fivetran</span>
+                <span class="marquee-dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="process" id="process">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="process.tag">How we work</span>
+                <h2 data-i18n-html="process.title">Like an artichoke,<br>great data unfolds <em>patiently</em>.</h2>
+            </div>
+            <div class="process-steps">
+                <div class="process-step" data-reveal>
+                    <div class="step-leaf">
+                        <svg viewBox="0 0 80 100" width="80" height="100">
+                            <path d="M40 5 C40 5 15 20 10 50 C5 80 30 95 40 95 C50 95 75 80 70 50 C65 20 40 5 40 5Z" fill="var(--sage)" opacity="0.3"/>
+                            <path d="M40 15 C40 15 22 27 18 50 C14 73 33 85 40 85 C47 85 66 73 62 50 C58 27 40 15 40 15Z" fill="var(--sage)" opacity="0.5"/>
+                        </svg>
+                        <span class="step-num">01</span>
+                    </div>
+                    <h3 data-i18n="process.s1.title">Outer leaves — Discovery</h3>
+                    <p data-i18n="process.s1.desc">We start at the surface. Understanding your business context, existing infrastructure, pain points, and ambitions. No assumptions, just deep listening.</p>
+                </div>
+                <div class="process-step" data-reveal>
+                    <div class="step-leaf">
+                        <svg viewBox="0 0 80 100" width="80" height="100">
+                            <path d="M40 10 C40 10 18 23 14 50 C10 77 32 90 40 90 C48 90 70 77 66 50 C62 23 40 10 40 10Z" fill="var(--leaf)" opacity="0.3"/>
+                            <path d="M40 20 C40 20 25 30 22 50 C19 70 35 80 40 80 C45 80 61 70 58 50 C55 30 40 20 40 20Z" fill="var(--leaf)" opacity="0.5"/>
+                        </svg>
+                        <span class="step-num">02</span>
+                    </div>
+                    <h3 data-i18n="process.s2.title">Middle layers — Design</h3>
+                    <p data-i18n="process.s2.desc">Architecture decisions, tech stack selection, data modeling. We design every layer with intention, ensuring each piece fits the whole.</p>
+                </div>
+                <div class="process-step" data-reveal>
+                    <div class="step-leaf">
+                        <svg viewBox="0 0 80 100" width="80" height="100">
+                            <path d="M40 12 C40 12 20 25 16 50 C12 75 34 88 40 88 C46 88 68 75 64 50 C60 25 40 12 40 12Z" fill="var(--lavender)" opacity="0.3"/>
+                            <path d="M40 22 C40 22 27 32 24 50 C21 68 36 78 40 78 C44 78 59 68 56 50 C53 32 40 22 40 22Z" fill="var(--lavender)" opacity="0.5"/>
+                        </svg>
+                        <span class="step-num">03</span>
+                    </div>
+                    <h3 data-i18n="process.s3.title">Inner petals — Build</h3>
+                    <p data-i18n="process.s3.desc">Hands on keyboards. We build iteratively, with CI/CD from day one, comprehensive testing, and full documentation. No black boxes.</p>
+                </div>
+                <div class="process-step" data-reveal>
+                    <div class="step-leaf">
+                        <svg viewBox="0 0 80 100" width="80" height="100">
+                            <path d="M40 15 C40 15 22 27 18 50 C14 73 33 85 40 85 C47 85 66 73 62 50 C58 27 40 15 40 15Z" fill="var(--peach)" opacity="0.3"/>
+                            <path d="M40 25 C40 25 30 33 28 50 C26 67 37 75 40 75 C43 75 54 67 52 50 C50 33 40 25 40 25Z" fill="var(--peach)" opacity="0.5"/>
+                        </svg>
+                        <span class="step-num">04</span>
+                    </div>
+                    <h3 data-i18n="process.s4.title">The heart — Deliver & Grow</h3>
+                    <p data-i18n="process.s4.desc">The best part. Your data platform goes live, your team gets trained, and we stay close for optimization. The heart of the artichoke is always worth the wait.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content" data-reveal>
+                    <span class="section-tag" data-i18n="about.tag">Why Datachoke?</span>
+                    <h2 data-i18n-html="about.title">Data + Artichoke.<br>Yes, <em>seriously</em>.</h2>
+                    <p class="about-lead" data-i18n="about.lead">
+                        The name started as a joke over an artichoke salad. It stuck because it turned out to be the perfect metaphor for what we do.
+                    </p>
+                    <p data-i18n="about.p1">
+                        An artichoke is complex, layered, and a little intimidating at first glance. But with the right technique and patience, you get to the heart — the most valuable part. That's exactly how we approach data engineering.
+                    </p>
+                    <p data-i18n="about.p2">
+                        We're a boutique studio of data engineers, architects, and analytics experts who believe that great data infrastructure should be as elegant as it is powerful. We don't do cookie-cutter solutions. Every engagement is crafted to fit.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-num">50+</span>
+                            <span class="stat-label" data-i18n="about.stat1">Projects delivered</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-num">3PB</span>
+                            <span class="stat-label" data-i18n="about.stat2">Data processed daily</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-num">99.9%</span>
+                            <span class="stat-label" data-i18n="about.stat3">Pipeline uptime</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual" data-reveal>
+                    <div class="artichoke-art">
+                        <div class="art-layer art-layer-1"></div>
+                        <div class="art-layer art-layer-2"></div>
+                        <div class="art-layer art-layer-3"></div>
+                        <div class="art-layer art-layer-4"></div>
+                        <div class="art-layer art-layer-5"></div>
+                        <div class="art-core"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info" data-reveal>
+                    <span class="section-tag" data-i18n="contact.tag">Get in touch</span>
+                    <h2 data-i18n-html="contact.title">Ready to get to<br>the <em>heart</em> of your data?</h2>
+                    <p data-i18n="contact.desc">Tell us about your project and we'll get back to you within 24 hours. No sales pitch, just a real conversation about your data needs.</p>
+                    <div class="contact-details">
+                        <a href="mailto:hello@datachok.io">hello@datachok.io</a>
+                    </div>
+                </div>
+                <form class="contact-form" data-reveal>
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder=" " required>
+                        <label for="name" data-i18n="contact.form.name">Your name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder=" " required>
+                        <label for="email" data-i18n="contact.form.email">Email address</label>
+                    </div>
+                    <div class="form-group">
+                        <select id="service" name="service" required>
+                            <option value="" disabled selected data-i18n="contact.form.select">What do you need?</option>
+                            <option value="architecture">Data Architecture</option>
+                            <option value="pipelines">Pipeline Engineering</option>
+                            <option value="cloud">Cloud & Infrastructure</option>
+                            <option value="analytics">Analytics & BI</option>
+                            <option value="strategy">Data Strategy</option>
+                            <option value="other" data-i18n="contact.form.other">Something else</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="4" placeholder=" " required></textarea>
+                        <label for="message" data-i18n="contact.form.message">Tell us about your project</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" data-i18n="contact.form.submit">Send message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <svg class="logo-icon" viewBox="0 0 40 40" width="40" height="40">
+                            <path d="M20 4 C20 4 12 8 10 16 C8 24 14 32 20 36 C26 32 32 24 30 16 C28 8 20 4 20 4Z" fill="var(--sage)" opacity="0.6"/>
+                            <path d="M20 8 C20 8 14 11 12 17 C10 23 15 29 20 32 C25 29 30 23 28 17 C26 11 20 8 20 8Z" fill="var(--leaf)"/>
+                            <circle cx="20" cy="18" r="4" fill="var(--cream)"/>
+                        </svg>
+                        <span>datachoke<span class="logo-accent">studios</span></span>
+                    </a>
+                    <p data-i18n="footer.tagline">Data engineering, artfully crafted.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Studio</h4>
+                    <a href="#services" data-i18n="nav.services">Services</a>
+                    <a href="#process" data-i18n="nav.process">Process</a>
+                    <a href="#about" data-i18n="nav.about">About</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-links">
+                    <h4 data-i18n="footer.connect">Connect</h4>
+                    <a href="https://www.linkedin.com/company/garnoun" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="https://github.com/linda-benboudiaf" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://medium.com/@lbenboudiaf" target="_blank" rel="noopener">Medium</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Datachoke Studios. <span data-i18n="footer.rights">All rights reserved.</span></p>
+                <p data-i18n="footer.love">Crafted with care and a love for artichokes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
