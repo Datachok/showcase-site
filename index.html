@@ -101,7 +101,11 @@
 
     <section class="hero" id="hero">
         <div class="hero-content">
-            <div class="hero-badge" data-i18n="hero.badge">Data Engineering Studio</div>
+            <div class="hero-overline">
+                <span class="overline-line"></span>
+                <span class="overline-text" data-i18n="hero.overline">Where data meets artistry</span>
+                <span class="overline-line"></span>
+            </div>
             <h1 data-i18n-html="hero.title">
                 We peel back complexity,<br>
                 <span class="hero-accent">layer by layer.</span>
@@ -157,16 +161,42 @@
                     <div class="service-number">03</div>
                     <div class="service-icon">
                         <svg viewBox="0 0 48 48" width="48" height="48">
+                            <circle cx="24" cy="20" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M14 38C14 32 18 28 24 28C30 28 34 32 34 38" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M32 16L38 10M38 10L42 14M38 10L36 6" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <circle cx="24" cy="20" r="2" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="services.s3.title">AI Agents & MCP</h3>
+                    <p data-i18n="services.s3.desc">We build intelligent AI agents and MCP integrations that automate complex workflows. From conversational bots to autonomous pipelines, we make AI work for your data.</p>
+                </div>
+                <div class="service-card" data-reveal>
+                    <div class="service-number">04</div>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" width="48" height="48">
                             <rect x="8" y="8" width="32" height="32" rx="4" stroke="currentColor" stroke-width="2" fill="none"/>
                             <line x1="8" y1="20" x2="40" y2="20" stroke="currentColor" stroke-width="2"/>
                             <line x1="20" y1="20" x2="20" y2="40" stroke="currentColor" stroke-width="2"/>
                         </svg>
                     </div>
-                    <h3 data-i18n="services.s3.title">Cloud & Infrastructure</h3>
-                    <p data-i18n="services.s3.desc">AWS, GCP, Azure — we speak fluent cloud. We deploy and optimize your data infrastructure with IaC, Kubernetes, and battle-tested DevOps practices.</p>
+                    <h3 data-i18n="services.s4.title">Cloud & Infrastructure</h3>
+                    <p data-i18n="services.s4.desc">AWS, GCP, Azure — we speak fluent cloud. We deploy and optimize your data infrastructure with IaC, Kubernetes, and battle-tested DevOps practices.</p>
                 </div>
                 <div class="service-card" data-reveal>
-                    <div class="service-number">04</div>
+                    <div class="service-number">05</div>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" width="48" height="48">
+                            <path d="M10 12H38M10 12V38L24 44L38 38V12" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M18 22L24 28L34 18" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <line x1="14" y1="8" x2="14" y2="14" stroke="currentColor" stroke-width="2"/>
+                            <line x1="34" y1="8" x2="34" y2="14" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="services.s5.title">Data Governance</h3>
+                    <p data-i18n="services.s5.desc">Quality, lineage, compliance — we structure your data governance so every dataset is trusted, traceable, and regulation-ready. No surprises, just clarity.</p>
+                </div>
+                <div class="service-card" data-reveal>
+                    <div class="service-number">06</div>
                     <div class="service-icon">
                         <svg viewBox="0 0 48 48" width="48" height="48">
                             <path d="M24 8L8 18V34L24 40L40 34V18L24 8Z" stroke="currentColor" stroke-width="2" fill="none"/>
@@ -175,11 +205,11 @@
                             <line x1="24" y1="24" x2="24" y2="40" stroke="currentColor" stroke-width="2"/>
                         </svg>
                     </div>
-                    <h3 data-i18n="services.s4.title">Analytics & BI</h3>
-                    <p data-i18n="services.s4.desc">Dashboards that tell stories, metrics that drive decisions. We transform raw data into visual narratives your entire team can understand.</p>
+                    <h3 data-i18n="services.s6.title">Analytics & BI</h3>
+                    <p data-i18n="services.s6.desc">Dashboards that tell stories, metrics that drive decisions. We transform raw data into visual narratives your entire team can understand.</p>
                 </div>
                 <div class="service-card" data-reveal>
-                    <div class="service-number">05</div>
+                    <div class="service-number">07</div>
                     <div class="service-icon">
                         <svg viewBox="0 0 48 48" width="48" height="48">
                             <path d="M12 36C12 36 12 24 24 24C36 24 36 12 36 12" stroke="currentColor" stroke-width="2" fill="none"/>
@@ -187,8 +217,8 @@
                             <circle cx="36" cy="12" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
                         </svg>
                     </div>
-                    <h3 data-i18n="services.s5.title">Data Strategy</h3>
-                    <p data-i18n="services.s5.desc">Not sure where to start? We audit your data maturity, map your needs, and chart a pragmatic roadmap to data excellence.</p>
+                    <h3 data-i18n="services.s7.title">Data Strategy</h3>
+                    <p data-i18n="services.s7.desc">We dive deep into your business reality before writing a single line of code. Needs analysis, maturity audit, and a pragmatic roadmap — because great engineering starts with understanding.</p>
                 </div>
                 <div class="service-card service-card-cta" data-reveal>
                     <div class="service-cta-inner">
@@ -212,19 +242,23 @@
                 <span class="marquee-dot"></span>
                 <span>Snowflake</span>
                 <span class="marquee-dot"></span>
+                <span>AI Agents</span>
+                <span class="marquee-dot"></span>
+                <span>MCP</span>
+                <span class="marquee-dot"></span>
                 <span>BigQuery</span>
                 <span class="marquee-dot"></span>
                 <span>Kafka</span>
                 <span class="marquee-dot"></span>
                 <span>Terraform</span>
                 <span class="marquee-dot"></span>
+                <span>LangChain</span>
+                <span class="marquee-dot"></span>
                 <span>Kubernetes</span>
                 <span class="marquee-dot"></span>
                 <span>Python</span>
                 <span class="marquee-dot"></span>
                 <span>Databricks</span>
-                <span class="marquee-dot"></span>
-                <span>Redshift</span>
                 <span class="marquee-dot"></span>
                 <span>Fivetran</span>
                 <span class="marquee-dot"></span>
@@ -236,19 +270,23 @@
                 <span class="marquee-dot"></span>
                 <span>Snowflake</span>
                 <span class="marquee-dot"></span>
+                <span>AI Agents</span>
+                <span class="marquee-dot"></span>
+                <span>MCP</span>
+                <span class="marquee-dot"></span>
                 <span>BigQuery</span>
                 <span class="marquee-dot"></span>
                 <span>Kafka</span>
                 <span class="marquee-dot"></span>
                 <span>Terraform</span>
                 <span class="marquee-dot"></span>
+                <span>LangChain</span>
+                <span class="marquee-dot"></span>
                 <span>Kubernetes</span>
                 <span class="marquee-dot"></span>
                 <span>Python</span>
                 <span class="marquee-dot"></span>
                 <span>Databricks</span>
-                <span class="marquee-dot"></span>
-                <span>Redshift</span>
                 <span class="marquee-dot"></span>
                 <span>Fivetran</span>
                 <span class="marquee-dot"></span>
@@ -342,15 +380,190 @@
                     </div>
                 </div>
                 <div class="about-visual" data-reveal>
-                    <div class="artichoke-art">
+                    <div class="artichoke-art" id="artichoke-peel">
                         <div class="art-layer art-layer-1"></div>
                         <div class="art-layer art-layer-2"></div>
                         <div class="art-layer art-layer-3"></div>
                         <div class="art-layer art-layer-4"></div>
                         <div class="art-layer art-layer-5"></div>
-                        <div class="art-core"></div>
+                        <div class="art-layer art-layer-6"></div>
+                        <div class="art-layer art-layer-7"></div>
+                        <div class="art-core">
+                            <span class="core-symbol">&#10084;</span>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="art-timeline" id="gallery">
+        <div class="container">
+            <div class="section-header" style="text-align:center;">
+                <span class="section-tag" data-i18n="gallery.tag">Our philosophy</span>
+                <h2 data-i18n-html="gallery.title">A journey through art,<br>a philosophy for <em>data</em>.</h2>
+                <p class="gallery-intro" data-i18n="gallery.intro">From the Renaissance to modern art, every era taught the same truth: mastery is built layer by layer. We bring that same vision to data engineering.</p>
+            </div>
+        </div>
+
+        <!-- Sticky scroll-driven gallery: user scrolls, paintings crossfade -->
+        <div class="timeline-scroll" id="timeline-scroll">
+            <div class="timeline-sticky">
+                <!-- Progress bar -->
+                <div class="timeline-progress"><div class="timeline-progress-fill" id="timeline-progress-fill"></div></div>
+                <!-- Counter -->
+                <div class="timeline-counter"><span id="timeline-current">1</span> / <span id="timeline-total">8</span></div>
+                <!-- Stacked panels — only one visible at a time -->
+                <div class="timeline-panel active" data-panel="0">
+                    <div class="panel-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/1280px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg')"></div>
+                    <div class="panel-overlay"></div>
+                    <div class="panel-content">
+                        <span class="panel-era">1485 — Early Renaissance</span>
+                        <h3 class="panel-artist">Botticelli</h3>
+                        <p class="panel-title" data-i18n="gallery.g1.title">The Birth of Venus</p>
+                        <p class="panel-lesson" data-i18n="gallery.g1.lesson">Beauty emerges from chaos — like clean data from raw streams.</p>
+                    </div>
+                </div>
+                <div class="timeline-panel" data-panel="1">
+                    <div class="panel-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg/1280px-Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg')"></div>
+                    <div class="panel-overlay"></div>
+                    <div class="panel-content">
+                        <span class="panel-era">1512 — High Renaissance</span>
+                        <h3 class="panel-artist">Michelangelo</h3>
+                        <p class="panel-title" data-i18n="gallery.g3.title">The Creation of Adam</p>
+                        <p class="panel-lesson" data-i18n="gallery.g3.lesson">The spark of connection — when systems finally talk to each other.</p>
+                    </div>
+                </div>
+                <div class="timeline-panel" data-panel="2">
+                    <div class="panel-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg/1280px-%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg')"></div>
+                    <div class="panel-overlay"></div>
+                    <div class="panel-content">
+                        <span class="panel-era">1511 — High Renaissance</span>
+                        <h3 class="panel-artist">Raphael</h3>
+                        <p class="panel-title" data-i18n="gallery.g4.title">The School of Athens</p>
+                        <p class="panel-lesson" data-i18n="gallery.g4.lesson">Architecture of knowledge — where every element has its place.</p>
+                    </div>
+                </div>
+                <div class="timeline-panel" data-panel="3">
+                    <div class="panel-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Tiziano%2C_Amor_Sacro_y_Amor_Profano_%28Galer%C3%ADa_Borghese%2C_Roma%2C_1514%29.jpg/1280px-Tiziano%2C_Amor_Sacro_y_Amor_Profano_%28Galer%C3%ADa_Borghese%2C_Roma%2C_1514%29.jpg')"></div>
+                    <div class="panel-overlay"></div>
+                    <div class="panel-content">
+                        <span class="panel-era">1514 — Venetian Renaissance</span>
+                        <h3 class="panel-artist">Titian</h3>
+                        <p class="panel-title" data-i18n="gallery.g7.title">Sacred and Profane Love</p>
+                        <p class="panel-lesson" data-i18n="gallery.g7.lesson">Duality mastered — the balance between raw data and refined insight.</p>
+                    </div>
+                </div>
+                <div class="timeline-panel" data-panel="4">
+                    <div class="panel-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Caravaggio_-_Medusa_-_Google_Art_Project.jpg/800px-Caravaggio_-_Medusa_-_Google_Art_Project.jpg')"></div>
+                    <div class="panel-overlay"></div>
+                    <div class="panel-content">
+                        <span class="panel-era">1597 — Baroque</span>
+                        <h3 class="panel-artist">Caravaggio</h3>
+                        <p class="panel-title" data-i18n="gallery.g6.title">Medusa</p>
+                        <p class="panel-lesson" data-i18n="gallery.g6.lesson">Chiaroscuro — mastering light and shadow to find the truth in data.</p>
+                    </div>
+                </div>
+                <div class="timeline-panel" data-panel="5">
+                    <div class="panel-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Meisje_met_de_parel.jpg/800px-Meisje_met_de_parel.jpg')"></div>
+                    <div class="panel-overlay"></div>
+                    <div class="panel-content">
+                        <span class="panel-era">1665 — Dutch Golden Age</span>
+                        <h3 class="panel-artist">Vermeer</h3>
+                        <p class="panel-title" data-i18n="gallery.g5.title">Girl with a Pearl Earring</p>
+                        <p class="panel-lesson" data-i18n="gallery.g5.lesson">One perfect insight can illuminate everything.</p>
+                    </div>
+                </div>
+                <div class="timeline-panel" data-panel="6">
+                    <div class="panel-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg')"></div>
+                    <div class="panel-overlay"></div>
+                    <div class="panel-content">
+                        <span class="panel-era">1889 — Post-Impressionism</span>
+                        <h3 class="panel-artist">Van Gogh</h3>
+                        <p class="panel-title" data-i18n="gallery.g8.title">The Starry Night</p>
+                        <p class="panel-lesson" data-i18n="gallery.g8.lesson">Seeing patterns where others see noise — the art of data visualization.</p>
+                    </div>
+                </div>
+                <div class="timeline-panel" data-panel="7">
+                    <div class="panel-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Vassily_Kandinsky%2C_1923_-_Composition_8%2C_huile_sur_toile%2C_140_cm_x_201_cm%2C_Mus%C3%A9e_Guggenheim%2C_New_York.jpg/1280px-Vassily_Kandinsky%2C_1923_-_Composition_8%2C_huile_sur_toile%2C_140_cm_x_201_cm%2C_Mus%C3%A9e_Guggenheim%2C_New_York.jpg')"></div>
+                    <div class="panel-overlay"></div>
+                    <div class="panel-content">
+                        <span class="panel-era">1923 — Abstract Art</span>
+                        <h3 class="panel-artist">Kandinsky</h3>
+                        <p class="panel-title" data-i18n="gallery.g9.title">Composition VIII</p>
+                        <p class="panel-lesson" data-i18n="gallery.g9.lesson">Pure abstraction — geometry and color become the universal language of data.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trust-section">
+        <div class="container">
+            <p class="trust-label" data-i18n="trust.label">They trust us</p>
+            <div class="trust-logos">
+                <a href="https://www.ina.fr" target="_blank" rel="noopener" class="trust-logo" data-reveal>
+                    <svg class="trust-icon-img" viewBox="0 0 120 120" width="64" height="64">
+                        <rect width="120" height="120" rx="12" fill="#1D8CB5"/>
+                        <text x="60" y="82" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="58" font-weight="400" fill="#FFFFFF" letter-spacing="-2">ina</text>
+                    </svg>
+                    <span class="trust-name">INA</span>
+                    <span class="trust-desc" data-i18n="trust.ina">Institut National de l'Audiovisuel</span>
+                </a>
+                <a href="https://beta.gouv.fr" target="_blank" rel="noopener" class="trust-logo" data-reveal>
+                    <svg class="trust-icon-img" viewBox="0 0 120 120" width="64" height="64">
+                        <clipPath id="betaCircle"><circle cx="60" cy="60" r="58"/></clipPath>
+                        <g clip-path="url(#betaCircle)">
+                            <rect x="0" y="0" width="40" height="120" fill="#002395"/>
+                            <rect x="40" y="0" width="40" height="120" fill="#FFFFFF"/>
+                            <rect x="80" y="0" width="40" height="120" fill="#ED2939"/>
+                            <ellipse cx="60" cy="75" rx="35" ry="25" fill="rgba(255,255,255,0.2)"/>
+                        </g>
+                        <circle cx="60" cy="60" r="58" fill="none" stroke="#E8E8E8" stroke-width="2"/>
+                        <text x="60" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#333">beta.gouv.fr</text>
+                    </svg>
+                    <span class="trust-name">beta.gouv</span>
+                    <span class="trust-desc" data-i18n="trust.beta">French Gov Digital Services</span>
+                </a>
+                <a href="https://www.besport.com" target="_blank" rel="noopener" class="trust-logo" data-reveal>
+                    <svg class="trust-icon-img" viewBox="0 0 180 60" width="100" height="34">
+                        <circle cx="28" cy="30" r="25" fill="none" stroke="#FF0040" stroke-width="3.5"/>
+                        <text x="28" y="39" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#FF0040">be</text>
+                        <text x="68" y="39" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="300" fill="#FF0040" letter-spacing="1">sport</text>
+                        <text x="155" y="22" text-anchor="start" font-family="Arial, sans-serif" font-size="10" fill="#FF0040">&#174;</text>
+                    </svg>
+                    <span class="trust-name">Be Sport</span>
+                    <span class="trust-desc" data-i18n="trust.besport">The Sports Social Network</span>
+                </a>
+                <a href="https://www.airship.com" target="_blank" rel="noopener" class="trust-logo" data-reveal>
+                    <svg class="trust-icon-img" viewBox="0 0 120 120" width="64" height="64">
+                        <defs><linearGradient id="airshipBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0B1B3D"/><stop offset="100%" stop-color="#162D5A"/></linearGradient></defs>
+                        <rect width="120" height="120" rx="16" fill="url(#airshipBg)"/>
+                        <circle cx="20" cy="18" r="1" fill="white" opacity="0.6"/>
+                        <circle cx="95" cy="25" r="0.8" fill="white" opacity="0.4"/>
+                        <circle cx="45" cy="12" r="0.6" fill="white" opacity="0.5"/>
+                        <circle cx="80" cy="15" r="1.2" fill="white" opacity="0.3"/>
+                        <circle cx="100" cy="50" r="0.7" fill="white" opacity="0.4"/>
+                        <circle cx="15" cy="55" r="0.8" fill="white" opacity="0.3"/>
+                        <path d="M60 28 L32 70 Q45 62 60 68 Q75 62 88 70 Z" fill="white"/>
+                        <circle cx="55" cy="48" r="4" fill="#0B1B3D"/>
+                        <path d="M38 65 Q60 50 82 65" fill="none" stroke="white" stroke-width="2" opacity="0.6"/>
+                    </svg>
+                    <span class="trust-name">Airship</span>
+                    <span class="trust-desc" data-i18n="trust.airship">CRM &amp; Push Notifications</span>
+                </a>
+                <a href="https://www.operadeparis.fr" target="_blank" rel="noopener" class="trust-logo" data-reveal>
+                    <svg class="trust-icon-img" viewBox="0 0 120 120" width="64" height="64">
+                        <rect width="120" height="120" rx="12" fill="#111111"/>
+                        <g transform="translate(60, 60)">
+                            <circle cx="-8" cy="0" r="28" fill="none" stroke="#C0C0C0" stroke-width="2.5"/>
+                            <line x1="12" y1="-28" x2="12" y2="28" stroke="#C0C0C0" stroke-width="2.5"/>
+                            <path d="M12 -28 Q35 -28 35 -8 Q35 10 12 10" fill="none" stroke="#C0C0C0" stroke-width="2.5"/>
+                        </g>
+                    </svg>
+                    <span class="trust-name">Op&eacute;ra de Paris</span>
+                    <span class="trust-desc" data-i18n="trust.opera">Op&eacute;ra National de Paris</span>
+                </a>
             </div>
         </div>
     </section>
@@ -380,7 +593,9 @@
                             <option value="" disabled selected data-i18n="contact.form.select">What do you need?</option>
                             <option value="architecture">Data Architecture</option>
                             <option value="pipelines">Pipeline Engineering</option>
+                            <option value="ai-agents">AI Agents & MCP</option>
                             <option value="cloud">Cloud & Infrastructure</option>
+                            <option value="governance">Data Governance</option>
                             <option value="analytics">Analytics & BI</option>
                             <option value="strategy">Data Strategy</option>
                             <option value="other" data-i18n="contact.form.other">Something else</option>
@@ -422,6 +637,7 @@
                     <a href="https://www.linkedin.com/company/garnoun" target="_blank" rel="noopener">LinkedIn</a>
                     <a href="https://github.com/linda-benboudiaf" target="_blank" rel="noopener">GitHub</a>
                     <a href="https://medium.com/@lbenboudiaf" target="_blank" rel="noopener">Medium</a>
+                    <a href="https://x.com/datachok" target="_blank" rel="noopener">X</a>
                 </div>
             </div>
             <div class="footer-bottom">

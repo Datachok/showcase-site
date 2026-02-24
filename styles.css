@@ -494,6 +494,7 @@ img {
 .btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     padding: 14px 32px;
     border-radius: 100px;
@@ -503,6 +504,8 @@ img {
     cursor: pointer;
     border: none;
     transition: var(--transition);
+    white-space: nowrap;
+    text-align: center;
 }
 
 .btn-primary {
@@ -560,22 +563,36 @@ img {
     text-align: center;
 }
 
-.hero-badge {
-    display: inline-block;
-    padding: 8px 20px;
-    background: rgba(183, 207, 183, 0.3);
-    border: 1px solid rgba(143, 184, 143, 0.3);
-    border-radius: 100px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--leaf-deep);
-    margin-bottom: 28px;
-    letter-spacing: 0.03em;
+/* Hero Overline — elegant Renaissance-inspired */
+.hero-overline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 32px;
 }
 
-[data-theme="dark"] .hero-badge {
-    background: rgba(74, 122, 74, 0.2);
-    border-color: rgba(106, 187, 106, 0.25);
+.overline-text {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--leaf-deep);
+    font-family: 'DM Sans', sans-serif;
+    white-space: nowrap;
+}
+
+.overline-line {
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--leaf-deep), transparent);
+    animation: overlineGlow 3s ease-in-out infinite;
+}
+
+@keyframes overlineGlow {
+    0%, 100% { opacity: 0.4; width: 40px; }
+    50% { opacity: 1; width: 70px; }
 }
 
 .hero h1 {
@@ -668,7 +685,7 @@ img {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
 
@@ -928,106 +945,411 @@ img {
     color: var(--ink-muted);
 }
 
-/* Artichoke CSS Art */
+/* Artichoke CSS Art — Peel & Reset Loop */
 .artichoke-art {
     position: relative;
-    width: 350px;
-    height: 350px;
+    width: 360px;
+    height: 360px;
     margin: 0 auto;
 }
 
 .art-layer {
     position: absolute;
     border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: none;
+    /* Each layer will be animated via JS for the peel loop */
 }
 
 .art-layer-1 {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--sage), var(--mint));
-    opacity: 0.3;
+    background: linear-gradient(160deg, var(--sage), var(--mint));
+    opacity: 0.35;
     top: 0;
     left: 0;
-    animation: layerFloat1 6s ease-in-out infinite;
 }
 
 .art-layer-2 {
-    width: 85%;
-    height: 85%;
-    background: linear-gradient(135deg, var(--leaf), var(--sage));
+    width: 88%;
+    height: 88%;
+    background: linear-gradient(140deg, var(--leaf), var(--sage));
     opacity: 0.4;
-    top: 7.5%;
-    left: 7.5%;
-    animation: layerFloat2 7s ease-in-out infinite;
+    top: 6%;
+    left: 6%;
 }
 
 .art-layer-3 {
-    width: 70%;
-    height: 70%;
-    background: linear-gradient(135deg, var(--lavender), var(--blush));
-    opacity: 0.4;
-    top: 15%;
-    left: 15%;
-    animation: layerFloat1 8s ease-in-out infinite reverse;
+    width: 76%;
+    height: 76%;
+    background: linear-gradient(120deg, var(--sage), var(--lavender));
+    opacity: 0.42;
+    top: 12%;
+    left: 12%;
 }
 
 .art-layer-4 {
-    width: 55%;
-    height: 55%;
-    background: linear-gradient(135deg, var(--peach), var(--blush));
-    opacity: 0.5;
-    top: 22.5%;
-    left: 22.5%;
-    animation: layerFloat2 5s ease-in-out infinite;
+    width: 64%;
+    height: 64%;
+    background: linear-gradient(135deg, var(--lavender), var(--blush));
+    opacity: 0.45;
+    top: 18%;
+    left: 18%;
 }
 
 .art-layer-5 {
+    width: 52%;
+    height: 52%;
+    background: linear-gradient(150deg, var(--blush), var(--peach));
+    opacity: 0.5;
+    top: 24%;
+    left: 24%;
+}
+
+.art-layer-6 {
     width: 40%;
     height: 40%;
-    background: linear-gradient(135deg, var(--sage), var(--leaf));
-    opacity: 0.5;
+    background: linear-gradient(135deg, var(--peach), var(--sage));
+    opacity: 0.55;
     top: 30%;
     left: 30%;
-    animation: layerFloat1 9s ease-in-out infinite;
+}
+
+.art-layer-7 {
+    width: 30%;
+    height: 30%;
+    background: linear-gradient(135deg, var(--sage), var(--leaf));
+    opacity: 0.6;
+    top: 35%;
+    left: 35%;
 }
 
 .art-core {
     position: absolute;
-    width: 22%;
-    height: 22%;
-    background: radial-gradient(circle, var(--bg), var(--peach));
+    width: 18%;
+    height: 18%;
+    background: radial-gradient(circle, var(--leaf-deep), var(--leaf));
     border-radius: 50%;
-    top: 39%;
-    left: 39%;
-    box-shadow: 0 0 40px rgba(255, 218, 179, 0.5);
-    animation: corePulse 4s ease-in-out infinite;
+    top: 41%;
+    left: 41%;
+    box-shadow: 0 0 50px rgba(106, 155, 106, 0.5),
+                0 0 100px rgba(106, 155, 106, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.8s, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.art-core.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.core-symbol {
+    font-size: 1.4rem;
+    color: white;
+    opacity: 0.9;
+    filter: drop-shadow(0 0 8px rgba(255,255,255,0.4));
 }
 
 [data-theme="dark"] .art-core {
-    box-shadow: 0 0 40px rgba(92, 74, 53, 0.5);
+    box-shadow: 0 0 50px rgba(74, 122, 74, 0.4),
+                0 0 100px rgba(106, 187, 106, 0.15);
 }
 
-@keyframes layerFloat1 {
-    0%, 100% { transform: rotate(0deg) scale(1); }
-    50% { transform: rotate(3deg) scale(1.02); }
+/* Peel animation state classes */
+.art-layer.peeling {
+    transition: transform 1.2s cubic-bezier(0.55, 0, 0.15, 1),
+                opacity 1.2s cubic-bezier(0.55, 0, 0.15, 1);
 }
 
-@keyframes layerFloat2 {
-    0%, 100% { transform: rotate(0deg) scale(1); }
-    50% { transform: rotate(-3deg) scale(0.98); }
+.art-layer.peeled {
+    opacity: 0 !important;
 }
 
-@keyframes corePulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.08); }
+.art-layer.returning {
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.artichoke-art:hover .art-layer-1 { transform: rotate(8deg) scale(1.05); }
-.artichoke-art:hover .art-layer-2 { transform: rotate(-6deg) scale(1.03); }
-.artichoke-art:hover .art-layer-3 { transform: rotate(5deg) scale(1.04); }
-.artichoke-art:hover .art-layer-4 { transform: rotate(-4deg) scale(1.02); }
-.artichoke-art:hover .art-layer-5 { transform: rotate(3deg) scale(1.06); }
+/* Idle floating — gentle rhythm while waiting */
+.art-layer.idle {
+    animation: layerIdle 6s ease-in-out infinite;
+}
+.art-layer-2.idle { animation-delay: -0.8s; }
+.art-layer-3.idle { animation-delay: -1.6s; }
+.art-layer-4.idle { animation-delay: -2.4s; }
+.art-layer-5.idle { animation-delay: -3.2s; }
+.art-layer-6.idle { animation-delay: -4s; }
+.art-layer-7.idle { animation-delay: -4.8s; }
+
+@keyframes layerIdle {
+    0%, 100% { transform: rotate(0deg) scale(1) translate(0, 0); }
+    25% { transform: rotate(1.5deg) scale(1.01) translate(1px, -1px); }
+    50% { transform: rotate(-1deg) scale(0.99) translate(-1px, 1px); }
+    75% { transform: rotate(0.5deg) scale(1.005) translate(0.5px, -0.5px); }
+}
+
+/* ============================================
+   ART TIMELINE — Sticky Scroll-Driven Crossfade
+   ============================================ */
+
+.art-timeline {
+    position: relative;
+    z-index: 1;
+    padding: 120px 0 0;
+}
+
+.gallery-intro {
+    font-size: 1.05rem;
+    color: var(--ink-muted);
+    max-width: 600px;
+    margin: 20px auto 0;
+    line-height: 1.7;
+    text-align: center;
+}
+
+/* Scroll container — tall enough for 8 panels of scrolling */
+.timeline-scroll {
+    position: relative;
+    height: 500vh; /* 8 panels × ~62vh each for scroll distance */
+}
+
+/* Sticky viewport — stays pinned while user scrolls */
+.timeline-sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Progress bar */
+.timeline-progress {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    z-index: 10;
+}
+
+.timeline-progress-fill {
+    height: 100%;
+    width: 12.5%;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 2px;
+    transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Counter */
+.timeline-counter {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.5);
+    z-index: 10;
+}
+
+/* ── Each painting panel — stacked, fade in/out ── */
+.timeline-panel {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+}
+
+.timeline-panel.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.panel-bg {
+    position: absolute;
+    inset: -20px;
+    background-size: cover;
+    background-position: center;
+    filter: blur(4px) saturate(0.8) brightness(0.65);
+    transform: scale(1.08);
+    z-index: 0;
+    transition: transform 6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.timeline-panel.active .panel-bg {
+    transform: scale(1.14);
+}
+
+.panel-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+        rgba(0, 0, 0, 0.55) 0%,
+        rgba(0, 0, 0, 0.3) 50%,
+        rgba(0, 0, 0, 0.5) 100%);
+    z-index: 1;
+}
+
+.panel-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 80px 24px;
+    max-width: 700px;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.9s 0.15s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.9s 0.15s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.timeline-panel.active .panel-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.panel-era {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 6px 16px;
+    border-radius: 100px;
+}
+
+.panel-artist {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    color: #fff;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+    text-shadow: 0 2px 30px rgba(0,0,0,0.5);
+}
+
+.panel-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.panel-lesson {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.7;
+    max-width: 500px;
+    margin: 0 auto;
+    font-weight: 300;
+}
+
+/* ============================================
+   THEY TRUST US
+   ============================================ */
+
+.trust-section {
+    position: relative;
+    z-index: 1;
+    padding: 80px 0;
+    border-top: 1px solid var(--section-border);
+}
+
+.trust-label {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-muted);
+    margin-bottom: 48px;
+}
+
+.trust-logos {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.trust-icon {
+    color: var(--leaf-deep);
+    margin-bottom: 8px;
+    opacity: 0.7;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.trust-icon-img {
+    margin-bottom: 12px;
+    border-radius: 8px;
+    transition: transform 0.3s, filter 0.3s;
+    filter: grayscale(0.3);
+}
+
+.trust-logo:hover .trust-icon-img {
+    transform: scale(1.08);
+    filter: grayscale(0);
+}
+
+.trust-logo:hover .trust-icon {
+    opacity: 1;
+    transform: scale(1.08);
+}
+
+.trust-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 6px;
+    padding: 28px 32px;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+    min-width: 180px;
+    flex: 1;
+    max-width: 220px;
+}
+
+.trust-logo:hover {
+    border-color: var(--leaf-deep);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px var(--shadow-card);
+}
+
+.trust-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+}
+
+.trust-desc {
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
 
 /* ============================================
    CONTACT
@@ -1227,11 +1549,13 @@ img {
    RESPONSIVE
    ============================================ */
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
     .services-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+}
 
+@media (max-width: 1024px) {
     .process-steps {
         grid-template-columns: repeat(2, 1fr);
         gap: 40px;
@@ -1275,8 +1599,8 @@ img {
     }
 
     .artichoke-art {
-        width: 250px;
-        height: 250px;
+        width: 280px;
+        height: 280px;
     }
 
     .contact-grid {
@@ -1307,6 +1631,28 @@ img {
     .hero-actions {
         flex-direction: column;
         align-items: center;
+    }
+
+    .timeline-scroll {
+        height: 400vh;
+    }
+
+    .panel-artist {
+        font-size: 2rem;
+    }
+
+    .trust-logos {
+        gap: 16px;
+    }
+
+    .trust-logo {
+        min-width: 140px;
+        padding: 20px 16px;
+    }
+
+    .trust-icon {
+        width: 48px;
+        height: 32px;
     }
 }
 

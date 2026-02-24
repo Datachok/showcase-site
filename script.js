@@ -1,17 +1,18 @@
 /* ============================================
-   DATACHOKE STUDIOS — Background, Dark Mode, i18n
+   DATACHOKE STUDIOS — Background, Dark Mode, i18n, Peel Animation
    ============================================ */
 
 (function () {
     'use strict';
 
-    // ── Canvas Background: Floating artichoke petals ──
-    // (defined first so other code can reference updateCanvasColors)
+    // ── Canvas Background: Enhanced floating artichoke petals + golden particles ──
     const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
     let width, height;
     let petals = [];
+    let particles = [];
     let mouse = { x: -1000, y: -1000 };
+    let time = 0;
 
     const COLORS_LIGHT = [
         { r: 183, g: 207, b: 183, a: 0.12 },
@@ -31,11 +32,16 @@
         { r: 60, g: 95, b: 70, a: 0.08 },
     ];
 
+    const PARTICLES_LIGHT = { r: 200, g: 180, b: 120, a: 0.25 };
+    const PARTICLES_DARK = { r: 180, g: 160, b: 100, a: 0.15 };
+
     let currentColors = COLORS_LIGHT;
+    let currentParticleColor = PARTICLES_LIGHT;
 
     function updateCanvasColors(theme) {
         currentColors = theme === 'dark' ? COLORS_DARK : COLORS_LIGHT;
-        petals.forEach(p => {
+        currentParticleColor = theme === 'dark' ? PARTICLES_DARK : PARTICLES_LIGHT;
+        petals.forEach(function (p) {
             p.color = currentColors[Math.floor(Math.random() * currentColors.length)];
         });
     }
@@ -46,30 +52,53 @@
     }
 
     function createPetal() {
-        const color = currentColors[Math.floor(Math.random() * currentColors.length)];
-        const size = 40 + Math.random() * 120;
+        var color = currentColors[Math.floor(Math.random() * currentColors.length)];
+        var size = 40 + Math.random() * 140;
+        var depth = 0.3 + Math.random() * 0.7; // parallax depth
         return {
             x: Math.random() * width,
             y: Math.random() * height,
-            size,
+            size: size,
+            depth: depth,
             rotation: Math.random() * Math.PI * 2,
-            rotSpeed: (Math.random() - 0.5) * 0.003,
-            vx: (Math.random() - 0.5) * 0.15,
-            vy: -0.1 - Math.random() * 0.2,
-            color,
-            scaleX: 0.6 + Math.random() * 0.4,
-            scaleY: 0.8 + Math.random() * 0.2,
+            rotSpeed: (Math.random() - 0.5) * 0.004 * depth,
+            vx: (Math.random() - 0.5) * 0.2 * depth,
+            vy: (-0.05 - Math.random() * 0.15) * depth,
+            color: color,
+            scaleX: 0.5 + Math.random() * 0.5,
+            scaleY: 0.7 + Math.random() * 0.3,
             wobble: Math.random() * Math.PI * 2,
-            wobbleSpeed: 0.005 + Math.random() * 0.01,
-            wobbleAmp: 0.3 + Math.random() * 0.5,
+            wobbleSpeed: 0.004 + Math.random() * 0.008,
+            wobbleAmp: 0.2 + Math.random() * 0.6,
+            // Double-petal shape variation
+            petalType: Math.random() > 0.6 ? 'double' : 'single',
+        };
+    }
+
+    function createParticle() {
+        return {
+            x: Math.random() * width,
+            y: Math.random() * height,
+            size: 1 + Math.random() * 2.5,
+            speed: 0.15 + Math.random() * 0.35,
+            angle: Math.random() * Math.PI * 2,
+            drift: (Math.random() - 0.5) * 0.3,
+            pulse: Math.random() * Math.PI * 2,
+            pulseSpeed: 0.02 + Math.random() * 0.03,
         };
     }
 
     function initPetals() {
-        const count = Math.min(Math.floor((width * height) / 25000), 40);
+        var count = Math.min(Math.floor((width * height) / 28000), 35);
         petals = [];
-        for (let i = 0; i < count; i++) {
+        for (var i = 0; i < count; i++) {
             petals.push(createPetal());
+        }
+        // Golden dust particles
+        var pCount = Math.min(Math.floor((width * height) / 15000), 50);
+        particles = [];
+        for (var j = 0; j < pCount; j++) {
+            particles.push(createParticle());
         }
     }
 
@@ -79,25 +108,50 @@
         ctx.rotate(p.rotation);
         ctx.scale(p.scaleX, p.scaleY);
 
+        var s = p.size;
+        var r = p.color.r, g = p.color.g, b = p.color.b, a = p.color.a;
+
+        // Main petal shape
         ctx.beginPath();
-        const s = p.size;
         ctx.moveTo(0, -s * 0.5);
         ctx.bezierCurveTo(s * 0.35, -s * 0.35, s * 0.4, s * 0.1, 0, s * 0.5);
         ctx.bezierCurveTo(-s * 0.4, s * 0.1, -s * 0.35, -s * 0.35, 0, -s * 0.5);
         ctx.closePath();
-
-        const { r, g, b, a } = p.color;
-        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${a})`;
+        ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
         ctx.fill();
 
+        // Vein line
         ctx.beginPath();
         ctx.moveTo(0, -s * 0.4);
         ctx.quadraticCurveTo(s * 0.02, 0, 0, s * 0.4);
-        ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${a * 0.5})`;
+        ctx.strokeStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + (a * 0.4) + ')';
         ctx.lineWidth = 0.5;
         ctx.stroke();
 
+        // Double petal — add a second smaller one rotated
+        if (p.petalType === 'double') {
+            ctx.rotate(0.6);
+            ctx.scale(0.6, 0.7);
+            ctx.beginPath();
+            ctx.moveTo(0, -s * 0.4);
+            ctx.bezierCurveTo(s * 0.28, -s * 0.28, s * 0.32, s * 0.08, 0, s * 0.4);
+            ctx.bezierCurveTo(-s * 0.32, s * 0.08, -s * 0.28, -s * 0.28, 0, -s * 0.4);
+            ctx.closePath();
+            ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + (a * 0.7) + ')';
+            ctx.fill();
+        }
+
         ctx.restore();
+    }
+
+    function drawParticle(p) {
+        var c = currentParticleColor;
+        p.pulse += p.pulseSpeed;
+        var alpha = c.a * (0.5 + 0.5 * Math.sin(p.pulse));
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',' + alpha + ')';
+        ctx.fill();
     }
 
     function updatePetal(p) {
@@ -106,11 +160,12 @@
         p.y += p.vy;
         p.rotation += p.rotSpeed;
 
-        const dx = p.x - mouse.x;
-        const dy = p.y - mouse.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 150) {
-            const force = (150 - dist) / 150 * 0.8;
+        var dx = p.x - mouse.x;
+        var dy = p.y - mouse.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        var radius = 120 + (1 - p.depth) * 60;
+        if (dist < radius) {
+            var force = ((radius - dist) / radius) * 0.6 * p.depth;
             p.x += (dx / dist) * force;
             p.y += (dy / dist) * force;
         }
@@ -121,12 +176,31 @@
         if (p.x > width + p.size) p.x = -p.size;
     }
 
+    function updateParticle(p) {
+        p.x += Math.cos(p.angle) * p.speed + p.drift;
+        p.y += Math.sin(p.angle) * p.speed;
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+    }
+
     function animate() {
+        time++;
         ctx.clearRect(0, 0, width, height);
-        for (let i = 0; i < petals.length; i++) {
+
+        // Draw particles (behind petals)
+        for (var j = 0; j < particles.length; j++) {
+            updateParticle(particles[j]);
+            drawParticle(particles[j]);
+        }
+
+        // Draw petals sorted by depth (far petals first)
+        for (var i = 0; i < petals.length; i++) {
             updatePetal(petals[i]);
             drawPetal(petals[i]);
         }
+
         requestAnimationFrame(animate);
     }
 
@@ -134,18 +208,18 @@
     initPetals();
     animate();
 
-    window.addEventListener('resize', () => { resize(); initPetals(); });
-    document.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
-    document.addEventListener('mouseleave', () => { mouse.x = -1000; mouse.y = -1000; });
+    window.addEventListener('resize', function () { resize(); initPetals(); });
+    document.addEventListener('mousemove', function (e) { mouse.x = e.clientX; mouse.y = e.clientY; });
+    document.addEventListener('mouseleave', function () { mouse.x = -1000; mouse.y = -1000; });
 
     // ── i18n Translations ──
-    const translations = {
+    var translations = {
         en: {
             'nav.services': 'Services',
             'nav.process': 'Process',
             'nav.about': 'About',
             'nav.cta': "Let's Talk",
-            'hero.badge': 'Data Engineering Studio',
+            'hero.overline': 'Where data meets artistry',
             'hero.title': 'We peel back complexity,<br><span class="hero-accent">layer by layer.</span>',
             'hero.sub': 'Like an artichoke reveals its heart through patience and precision, we strip away data chaos to uncover the insights at your core.',
             'hero.cta1': 'Discover our craft',
@@ -156,12 +230,16 @@
             'services.s1.desc': 'We design robust, scalable data architectures that grow with your ambitions. From data lakes to warehouses, we build foundations that last.',
             'services.s2.title': 'Pipeline Engineering',
             'services.s2.desc': 'Real-time or batch, we craft data pipelines that are reliable, observable, and elegant. Your data flows like it was always meant to.',
-            'services.s3.title': 'Cloud & Infrastructure',
-            'services.s3.desc': 'AWS, GCP, Azure \u2014 we speak fluent cloud. We deploy and optimize your data infrastructure with IaC, Kubernetes, and battle-tested DevOps practices.',
-            'services.s4.title': 'Analytics & BI',
-            'services.s4.desc': 'Dashboards that tell stories, metrics that drive decisions. We transform raw data into visual narratives your entire team can understand.',
-            'services.s5.title': 'Data Strategy',
-            'services.s5.desc': "Not sure where to start? We audit your data maturity, map your needs, and chart a pragmatic roadmap to data excellence.",
+            'services.s3.title': 'AI Agents & MCP',
+            'services.s3.desc': 'We build intelligent AI agents and MCP integrations that automate complex workflows. From conversational bots to autonomous pipelines, we make AI work for your data.',
+            'services.s4.title': 'Cloud & Infrastructure',
+            'services.s4.desc': 'AWS, GCP, Azure \u2014 we speak fluent cloud. We deploy and optimize your data infrastructure with IaC, Kubernetes, and battle-tested DevOps practices.',
+            'services.s5.title': 'Data Governance',
+            'services.s5.desc': 'Quality, lineage, compliance \u2014 we structure your data governance so every dataset is trusted, traceable, and regulation-ready. No surprises, just clarity.',
+            'services.s6.title': 'Analytics & BI',
+            'services.s6.desc': 'Dashboards that tell stories, metrics that drive decisions. We transform raw data into visual narratives your entire team can understand.',
+            'services.s7.title': 'Data Strategy',
+            'services.s7.desc': 'We dive deep into your business reality before writing a single line of code. Needs analysis, maturity audit, and a pragmatic roadmap \u2014 because great engineering starts with understanding.',
             'services.cta.title': 'Got a data challenge?',
             'services.cta.desc': "Let's peel it apart together.",
             'services.cta.btn': 'Get in touch',
@@ -183,6 +261,34 @@
             'about.stat1': 'Projects delivered',
             'about.stat2': 'Data processed daily',
             'about.stat3': 'Pipeline uptime',
+            'gallery.tag': 'Our philosophy',
+            'gallery.title': 'A journey through art,<br>a philosophy for <em>data</em>.',
+            'gallery.intro': 'From the Renaissance to modern art, every era taught the same truth: mastery is built layer by layer. We bring that same vision to data engineering.',
+            'gallery.g1.title': 'The Birth of Venus',
+            'gallery.g1.lesson': 'Beauty emerges from chaos \u2014 like clean data from raw streams.',
+            'gallery.g3.title': 'The Creation of Adam',
+            'gallery.g3.lesson': 'The spark of connection \u2014 when systems finally talk to each other.',
+            'gallery.g4.title': 'The School of Athens',
+            'gallery.g4.lesson': 'Architecture of knowledge \u2014 where every element has its place.',
+            'gallery.g7.title': 'Sacred and Profane Love',
+            'gallery.g7.lesson': 'Duality mastered \u2014 the balance between raw data and refined insight.',
+            'gallery.g6.title': 'Medusa',
+            'gallery.g6.lesson': 'Chiaroscuro \u2014 mastering light and shadow to find the truth in data.',
+            'gallery.g5.title': 'Girl with a Pearl Earring',
+            'gallery.g5.lesson': 'One perfect insight can illuminate everything.',
+            'gallery.g8.title': 'The Starry Night',
+            'gallery.g8.lesson': 'Seeing patterns where others see noise \u2014 the art of data visualization.',
+            'gallery.g9.title': 'Composition VIII',
+            'gallery.g9.lesson': 'Pure abstraction \u2014 geometry and color become the universal language of data.',
+            'trust.label': 'They trust us',
+            'trust.ina': 'Institut National de l\'Audiovisuel',
+            'trust.beta': 'French Gov Digital Services',
+            'trust.besport': 'The Sports Social Network',
+            'trust.airship': 'CRM & Push Notifications',
+            'trust.opera': 'Op\u00E9ra National de Paris',
+            'renaissance.quote': 'Simplicity is the ultimate sophistication.',
+            'renaissance.author': '\u2014 Leonardo da Vinci',
+            'renaissance.connect': 'Like the Old Masters, we believe the most powerful work comes from mastering every layer before revealing the final masterpiece.',
             'contact.tag': 'Get in touch',
             'contact.title': 'Ready to get to<br>the <em>heart</em> of your data?',
             'contact.desc': "Tell us about your project and we'll get back to you within 24 hours. No sales pitch, just a real conversation about your data needs.",
@@ -203,10 +309,10 @@
             'nav.process': 'Approche',
             'nav.about': '\u00C0 propos',
             'nav.cta': 'Parlons-en',
-            'hero.badge': 'Studio Data Engineering',
+            'hero.overline': 'L\u00E0 o\u00F9 la data rencontre l\u2019art',
             'hero.title': 'On d\u00E9cortique la complexit\u00E9,<br><span class="hero-accent">couche par couche.</span>',
             'hero.sub': "Comme un artichaut r\u00E9v\u00E8le son c\u0153ur avec patience et pr\u00E9cision, nous dissipons le chaos de vos donn\u00E9es pour r\u00E9v\u00E9ler les insights essentiels.",
-            'hero.cta1': 'D\u00E9couvrir notre savoir-faire',
+            'hero.cta1': 'Notre savoir-faire',
             'hero.cta2': 'Lancer un projet',
             'services.tag': 'Ce que nous cultivons',
             'services.title': 'Chaque couche de vos donn\u00E9es,<br>soigneusement <em>ing\u00E9nier\u00E9e</em>.',
@@ -214,12 +320,16 @@
             'services.s1.desc': "Nous concevons des architectures de donn\u00E9es robustes et \u00E9volutives qui grandissent avec vos ambitions. Des data lakes aux entrep\u00F4ts, nous b\u00E2tissons des fondations durables.",
             'services.s2.title': 'Ing\u00E9nierie Pipeline',
             'services.s2.desc': "Temps r\u00E9el ou batch, nous cr\u00E9ons des pipelines de donn\u00E9es fiables, observables et \u00E9l\u00E9gants. Vos donn\u00E9es coulent comme elles l'ont toujours voulu.",
-            'services.s3.title': 'Cloud & Infrastructure',
-            'services.s3.desc': "AWS, GCP, Azure \u2014 nous parlons couramment cloud. Nous d\u00E9ployons et optimisons votre infrastructure data avec IaC, Kubernetes et des pratiques DevOps \u00E9prouv\u00E9es.",
-            'services.s4.title': 'Analytics & BI',
-            'services.s4.desc': "Des dashboards qui racontent des histoires, des m\u00E9triques qui orientent les d\u00E9cisions. Nous transformons les donn\u00E9es brutes en r\u00E9cits visuels que toute votre \u00E9quipe peut comprendre.",
-            'services.s5.title': 'Strat\u00E9gie Data',
-            'services.s5.desc': "Pas s\u00FBr par o\u00F9 commencer ? Nous auditons votre maturit\u00E9 data, cartographions vos besoins et tra\u00E7ons une feuille de route pragmatique vers l'excellence.",
+            'services.s3.title': 'Agents IA & MCP',
+            'services.s3.desc': "Nous construisons des agents IA intelligents et des int\u00E9grations MCP qui automatisent les workflows complexes. Des bots conversationnels aux pipelines autonomes, l'IA au service de vos donn\u00E9es.",
+            'services.s4.title': 'Cloud & Infrastructure',
+            'services.s4.desc': "AWS, GCP, Azure \u2014 nous parlons couramment cloud. Nous d\u00E9ployons et optimisons votre infrastructure data avec IaC, Kubernetes et des pratiques DevOps \u00E9prouv\u00E9es.",
+            'services.s5.title': 'Gouvernance Data',
+            'services.s5.desc': "Qualit\u00E9, lin\u00E9age, conformit\u00E9 \u2014 nous structurons votre gouvernance pour que chaque jeu de donn\u00E9es soit fiable, tra\u00E7able et conforme. Z\u00E9ro surprise, juste de la clart\u00E9.",
+            'services.s6.title': 'Analytics & BI',
+            'services.s6.desc': "Des dashboards qui racontent des histoires, des m\u00E9triques qui orientent les d\u00E9cisions. Nous transformons les donn\u00E9es brutes en r\u00E9cits visuels que toute votre \u00E9quipe peut comprendre.",
+            'services.s7.title': 'Strat\u00E9gie Data',
+            'services.s7.desc': "Nous plong\u00E9ons au c\u0153ur de votre r\u00E9alit\u00E9 m\u00E9tier avant d'\u00E9crire la moindre ligne de code. Analyse des besoins, audit de maturit\u00E9, feuille de route \u2014 parce que la bonne ing\u00E9nierie commence par la compr\u00E9hension.",
             'services.cta.title': 'Un d\u00E9fi data ?',
             'services.cta.desc': "\u00C9pluchons-le ensemble.",
             'services.cta.btn': 'Nous contacter',
@@ -241,6 +351,34 @@
             'about.stat1': 'Projets livr\u00E9s',
             'about.stat2': 'Donn\u00E9es trait\u00E9es / jour',
             'about.stat3': 'Uptime pipelines',
+            'gallery.tag': 'Notre philosophie',
+            'gallery.title': 'Un voyage \u00e0 travers l\u2019art,<br>une philosophie pour la <em>data</em>.',
+            'gallery.intro': 'De la Renaissance \u00e0 l\u2019art moderne, chaque \u00e9poque a enseign\u00e9 la m\u00eame v\u00e9rit\u00e9 : la ma\u00eetrise se construit couche par couche. Nous apportons cette m\u00eame vision au data engineering.',
+            'gallery.g1.title': 'La Naissance de V\u00e9nus',
+            'gallery.g1.lesson': 'La beaut\u00e9 \u00e9merge du chaos \u2014 comme des donn\u00e9es propres naissent des flux bruts.',
+            'gallery.g3.title': 'La Cr\u00e9ation d\u2019Adam',
+            'gallery.g3.lesson': 'L\u2019\u00e9tincelle de connexion \u2014 quand les syst\u00e8mes se parlent enfin.',
+            'gallery.g4.title': 'L\u2019\u00c9cole d\u2019Ath\u00e8nes',
+            'gallery.g4.lesson': 'Architecture du savoir \u2014 o\u00f9 chaque \u00e9l\u00e9ment trouve sa place.',
+            'gallery.g7.title': 'Amour sacr\u00e9 et Amour profane',
+            'gallery.g7.lesson': 'La dualit\u00e9 ma\u00eetris\u00e9e \u2014 l\u2019\u00e9quilibre entre donn\u00e9es brutes et insight raffin\u00e9.',
+            'gallery.g6.title': 'M\u00e9duse',
+            'gallery.g6.lesson': 'Le clair-obscur \u2014 ma\u00eetriser la lumi\u00e8re et l\u2019ombre pour trouver la v\u00e9rit\u00e9 dans les donn\u00e9es.',
+            'gallery.g5.title': 'La Jeune Fille \u00e0 la perle',
+            'gallery.g5.lesson': 'Un seul insight parfait peut tout illuminer.',
+            'gallery.g8.title': 'La Nuit \u00e9toil\u00e9e',
+            'gallery.g8.lesson': 'Voir des motifs l\u00e0 o\u00f9 d\u2019autres voient du bruit \u2014 l\u2019art de la data visualisation.',
+            'gallery.g9.title': 'Composition VIII',
+            'gallery.g9.lesson': 'L\u2019abstraction pure \u2014 g\u00e9om\u00e9trie et couleur deviennent le langage universel de la data.',
+            'trust.label': 'Ils nous font confiance',
+            'trust.ina': 'Institut National de l\u2019Audiovisuel',
+            'trust.beta': 'Services Num\u00e9riques de l\u2019\u00c9tat',
+            'trust.besport': 'Le R\u00e9seau Social du Sport',
+            'trust.airship': 'CRM & Notifications Push',
+            'trust.opera': 'Op\u00e9ra National de Paris',
+            'renaissance.quote': 'La simplicit\u00E9 est la sophistication supr\u00EAme.',
+            'renaissance.author': '\u2014 L\u00E9onard de Vinci',
+            'renaissance.connect': 'Comme les grands Ma\u00EEtres, nous croyons que l\u2019\u0153uvre la plus puissante na\u00EEt de la ma\u00EEtrise de chaque couche avant de r\u00E9v\u00E9ler le chef-d\u2019\u0153uvre final.',
             'contact.tag': 'Nous contacter',
             'contact.title': 'Pr\u00EAt \u00E0 aller au<br><em>c\u0153ur</em> de vos donn\u00E9es ?',
             'contact.desc': "Parlez-nous de votre projet et nous vous recontactons sous 24h. Pas de pitch commercial, juste une vraie conversation sur vos besoins data.",
@@ -258,7 +396,7 @@
         }
     };
 
-    let currentLang = localStorage.getItem('datachoke-lang') || 'en';
+    var currentLang = localStorage.getItem('datachoke-lang') || 'en';
 
     // ── Flag SVG builders ──
     function flagFR() {
@@ -273,25 +411,25 @@
     }
 
     function updateFlags() {
-        const svg = currentLang === 'en' ? flagFR() : flagGB();
-        document.querySelectorAll('.flag-icon').forEach(el => {
+        var svg = currentLang === 'en' ? flagFR() : flagGB();
+        document.querySelectorAll('.flag-icon').forEach(function (el) {
             el.innerHTML = svg;
         });
     }
 
     function applyTranslations() {
-        const t = translations[currentLang];
+        var t = translations[currentLang];
         document.documentElement.lang = currentLang;
 
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+            var key = el.getAttribute('data-i18n');
             if (t[key] !== undefined) {
                 el.textContent = t[key];
             }
         });
 
-        document.querySelectorAll('[data-i18n-html]').forEach(el => {
-            const key = el.getAttribute('data-i18n-html');
+        document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+            var key = el.getAttribute('data-i18n-html');
             if (t[key] !== undefined) {
                 el.innerHTML = t[key];
             }
@@ -317,7 +455,7 @@
 
     // ── Dark Mode ──
     function getPreferredTheme() {
-        const stored = localStorage.getItem('datachoke-theme');
+        var stored = localStorage.getItem('datachoke-theme');
         if (stored) return stored;
         return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
@@ -329,7 +467,7 @@
     }
 
     function toggleTheme() {
-        const current = document.documentElement.getAttribute('data-theme');
+        var current = document.documentElement.getAttribute('data-theme');
         applyTheme(current === 'dark' ? 'light' : 'dark');
     }
 
@@ -339,7 +477,7 @@
     applyTheme(getPreferredTheme());
 
     // ── Navbar scroll effect ──
-    const navbar = document.getElementById('navbar');
+    var navbar = document.getElementById('navbar');
 
     window.addEventListener('scroll', function () {
         if (window.scrollY > 50) {
@@ -350,8 +488,8 @@
     }, { passive: true });
 
     // ── Mobile menu toggle ──
-    const navToggle = document.getElementById('nav-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
+    var navToggle = document.getElementById('nav-toggle');
+    var mobileMenu = document.getElementById('mobile-menu');
 
     navToggle.addEventListener('click', function () {
         navToggle.classList.toggle('active');
@@ -368,8 +506,6 @@
     });
 
     // ── Scroll reveal ──
-    // Use a lower threshold and bigger rootMargin to ensure elements reveal
-    // even when opening as a local file
     var revealEls = document.querySelectorAll('[data-reveal]');
 
     var revealObserver = new IntersectionObserver(function (entries) {
@@ -387,7 +523,7 @@
 
     revealEls.forEach(function (el) { revealObserver.observe(el); });
 
-    // Fallback: if after 1.5s some elements still haven't revealed (e.g. already in viewport), force reveal
+    // Fallback for file:// or already-visible
     setTimeout(function () {
         revealEls.forEach(function (el) {
             if (!el.classList.contains('revealed')) {
@@ -429,4 +565,161 @@
             }, 3000);
         });
     }
+
+    // ── Artichoke Peel & Reset Loop Animation ──
+    var artichoke = document.getElementById('artichoke-peel');
+    if (artichoke) {
+        var layers = artichoke.querySelectorAll('.art-layer');
+        var core = artichoke.querySelector('.art-core');
+        var layerCount = layers.length;
+        var peelDirections = [
+            { rotate: -35, tx: -120, ty: -60 },
+            { rotate: 30, tx: 100, ty: -80 },
+            { rotate: -25, tx: -90, ty: 50 },
+            { rotate: 40, tx: 110, ty: 40 },
+            { rotate: -20, tx: -70, ty: -90 },
+            { rotate: 35, tx: 80, ty: 70 },
+            { rotate: -30, tx: -100, ty: -40 },
+        ];
+
+        // States: 'idle' -> 'peeling' -> 'reveal' -> 'returning' -> 'idle'
+        var peelState = 'idle';
+        var peelIndex = 0;
+        var peelTimers = [];
+
+        function setIdleState() {
+            layers.forEach(function (l) {
+                l.classList.remove('peeling', 'peeled', 'returning');
+                l.classList.add('idle');
+                l.style.transform = '';
+                l.style.opacity = '';
+            });
+            core.classList.remove('visible');
+            peelState = 'idle';
+            peelIndex = 0;
+        }
+
+        function startPeeling() {
+            if (peelState !== 'idle') return;
+            peelState = 'peeling';
+
+            // Remove idle animations
+            layers.forEach(function (l) { l.classList.remove('idle'); });
+
+            // Peel layers one by one from outermost (index 0) to innermost
+            for (var i = 0; i < layerCount; i++) {
+                (function (idx) {
+                    var timer = setTimeout(function () {
+                        var layer = layers[idx];
+                        var dir = peelDirections[idx % peelDirections.length];
+                        layer.classList.add('peeling');
+                        layer.style.transform = 'rotate(' + dir.rotate + 'deg) translate(' + dir.tx + 'px, ' + dir.ty + 'px) scale(0.3)';
+                        layer.style.opacity = '0';
+
+                        // After transition, mark as peeled
+                        setTimeout(function () {
+                            layer.classList.add('peeled');
+                        }, 1200);
+
+                        // If last layer, show core
+                        if (idx === layerCount - 1) {
+                            setTimeout(function () {
+                                peelState = 'reveal';
+                                core.classList.add('visible');
+                                // Hold the reveal, then start returning
+                                setTimeout(function () {
+                                    startReturning();
+                                }, 2000);
+                            }, 1000);
+                        }
+                    }, idx * 600);
+                    peelTimers.push(timer);
+                })(i);
+            }
+        }
+
+        function startReturning() {
+            peelState = 'returning';
+            core.classList.remove('visible');
+
+            // Return layers from innermost to outermost
+            for (var i = layerCount - 1; i >= 0; i--) {
+                (function (idx) {
+                    var reverseIdx = layerCount - 1 - idx;
+                    var timer = setTimeout(function () {
+                        var layer = layers[idx];
+                        layer.classList.remove('peeling', 'peeled');
+                        layer.classList.add('returning');
+                        layer.style.transform = '';
+                        layer.style.opacity = '';
+
+                        // If first layer (outermost, last to return), go back to idle
+                        if (idx === 0) {
+                            setTimeout(function () {
+                                setIdleState();
+                                // Restart the cycle after a pause
+                                setTimeout(function () {
+                                    startPeeling();
+                                }, 3000);
+                            }, 800);
+                        }
+                    }, reverseIdx * 400);
+                    peelTimers.push(timer);
+                })(i);
+            }
+        }
+
+        // Start animation when the artichoke scrolls into view
+        var peelObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting && peelState === 'idle') {
+                    // Small delay to let the reveal animation happen first
+                    setTimeout(function () {
+                        startPeeling();
+                    }, 1200);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        setIdleState();
+        peelObserver.observe(artichoke);
+    }
+
+    // ── Timeline: Scroll-driven crossfade gallery ──
+    var timelineScroll = document.getElementById('timeline-scroll');
+    if (timelineScroll) {
+        var panels = timelineScroll.querySelectorAll('.timeline-panel');
+        var progressFill = document.getElementById('timeline-progress-fill');
+        var counterCurrent = document.getElementById('timeline-current');
+        var panelCount = panels.length;
+        var lastActiveIndex = 0;
+
+        function updateTimeline() {
+            var rect = timelineScroll.getBoundingClientRect();
+            var scrollHeight = timelineScroll.offsetHeight - window.innerHeight;
+            var scrolled = -rect.top;
+            var progress = Math.max(0, Math.min(1, scrolled / scrollHeight));
+
+            // Which panel should be active?
+            var activeIndex = Math.min(Math.floor(progress * panelCount), panelCount - 1);
+
+            if (activeIndex !== lastActiveIndex) {
+                panels[lastActiveIndex].classList.remove('active');
+                panels[activeIndex].classList.add('active');
+                lastActiveIndex = activeIndex;
+                if (counterCurrent) counterCurrent.textContent = activeIndex + 1;
+            }
+
+            // Update progress bar
+            if (progressFill) {
+                progressFill.style.width = ((activeIndex + 1) / panelCount * 100) + '%';
+            }
+
+            requestAnimationFrame(updateTimeline);
+        }
+
+        // Start the loop
+        requestAnimationFrame(updateTimeline);
+    }
+
 })();
