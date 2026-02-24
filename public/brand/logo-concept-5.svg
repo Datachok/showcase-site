@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Concept 5: Artichoke Spiral + Binary
+       Golden-ratio inspired spiral of petals,
+       with subtle 0/1 texture. Elegant, sophisticated. -->
+  <defs>
+    <linearGradient id="c5-g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6A9B6A"/>
+      <stop offset="100%" stop-color="#4A7A4A"/>
+    </linearGradient>
+    <linearGradient id="c5-g2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8FB88F"/>
+      <stop offset="100%" stop-color="#6A9B6A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Spiral of petals — fibonacci-inspired arrangement -->
+
+  <!-- Petal 1 — top -->
+  <path d="M200 50 C215 50 230 65 230 90 C230 115 215 135 200 140 C185 135 170 115 170 90 C170 65 185 50 200 50Z"
+        fill="#B7CFB7" opacity="0.4"/>
+
+  <!-- Petal 2 — top-right -->
+  <path d="M260 80 C272 88 280 105 275 128 C270 150 255 165 240 165 C230 155 225 135 232 115 C238 95 250 82 260 80Z"
+        fill="#8FB88F" opacity="0.5"/>
+
+  <!-- Petal 3 — right -->
+  <path d="M300 150 C308 165 305 185 292 202 C280 218 260 225 248 220 C242 207 248 188 260 175 C272 162 290 155 300 150Z"
+        fill="url(#c5-g2)" opacity="0.55"/>
+
+  <!-- Petal 4 — bottom-right -->
+  <path d="M290 240 C290 258 278 275 260 282 C242 290 222 285 215 275 C215 260 225 245 240 238 C255 232 275 233 290 240Z"
+        fill="url(#c5-g1)" opacity="0.6"/>
+
+  <!-- Petal 5 — bottom -->
+  <path d="M240 310 C228 318 210 318 195 310 C180 302 172 285 175 272 C185 268 200 272 212 282 C222 290 232 302 240 310Z"
+        fill="url(#c5-g1)" opacity="0.65"/>
+
+  <!-- Petal 6 — bottom-left -->
+  <path d="M150 290 C138 282 130 265 135 248 C140 230 155 218 168 218 C175 228 172 248 162 262 C152 276 142 285 150 290Z"
+        fill="url(#c5-g2)" opacity="0.6"/>
+
+  <!-- Petal 7 — left -->
+  <path d="M108 220 C100 205 102 185 115 170 C128 155 148 148 158 155 C162 168 152 188 140 200 C128 212 112 218 108 220Z"
+        fill="#8FB88F" opacity="0.55"/>
+
+  <!-- Petal 8 — top-left -->
+  <path d="M120 145 C118 128 128 110 145 100 C162 90 180 92 185 102 C182 115 168 128 152 135 C138 140 124 142 120 145Z"
+        fill="#B7CFB7" opacity="0.5"/>
+
+  <!-- Inner ring of smaller petals -->
+  <path d="M200 110 C210 110 218 120 218 135 C218 150 210 160 200 162 C190 160 182 150 182 135 C182 120 190 110 200 110Z"
+        fill="url(#c5-g1)" opacity="0.7"/>
+  <path d="M238 138 C245 145 245 158 238 170 C230 182 218 186 212 180 C210 170 215 158 225 150 C232 144 238 140 238 138Z"
+        fill="url(#c5-g1)" opacity="0.7"/>
+  <path d="M248 195 C248 208 238 220 225 225 C212 228 200 222 198 212 C202 205 215 200 228 200 C238 200 246 198 248 195Z"
+        fill="url(#c5-g1)" opacity="0.7"/>
+  <path d="M222 245 C215 252 202 255 190 248 C180 242 175 228 180 220 C190 220 200 228 208 238 C214 244 220 248 222 245Z"
+        fill="url(#c5-g1)" opacity="0.7"/>
+  <path d="M168 240 C158 235 152 222 155 208 C158 195 168 188 175 192 C178 202 172 215 165 225 C160 232 160 238 168 240Z"
+        fill="url(#c5-g1)" opacity="0.7"/>
+  <path d="M155 185 C152 172 158 158 170 150 C182 142 195 145 198 155 C192 162 178 168 168 175 C160 180 155 185 155 185Z"
+        fill="url(#c5-g1)" opacity="0.7"/>
+
+  <!-- Core — golden heart -->
+  <circle cx="200" cy="192" r="24" fill="url(#c5-g1)"/>
+  <circle cx="200" cy="192" r="14" fill="#FFF8F0"/>
+
+  <!-- Tiny binary hint around the core -->
+  <text x="170" y="176" font-family="monospace" font-size="7" fill="#6A9B6A" opacity="0.3">01</text>
+  <text x="222" y="180" font-family="monospace" font-size="7" fill="#6A9B6A" opacity="0.3">10</text>
+  <text x="175" y="215" font-family="monospace" font-size="7" fill="#6A9B6A" opacity="0.3">11</text>
+  <text x="218" y="210" font-family="monospace" font-size="7" fill="#6A9B6A" opacity="0.3">01</text>
+</svg>

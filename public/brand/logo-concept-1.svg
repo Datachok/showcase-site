@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Concept 1: Artichoke Heart + Data Node
+       Minimal geometric artichoke made of overlapping petals
+       with a glowing data node at the center -->
+  <defs>
+    <linearGradient id="c1-petal1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B7CFB7"/>
+      <stop offset="100%" stop-color="#8FB88F"/>
+    </linearGradient>
+    <linearGradient id="c1-petal2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8FB88F"/>
+      <stop offset="100%" stop-color="#6A9B6A"/>
+    </linearGradient>
+    <linearGradient id="c1-petal3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6A9B6A"/>
+      <stop offset="100%" stop-color="#4A7A4A"/>
+    </linearGradient>
+    <linearGradient id="c1-core" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6A9B6A"/>
+      <stop offset="100%" stop-color="#3D6B3D"/>
+    </linearGradient>
+    <filter id="c1-glow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Outer petals — layer 1 (lightest) -->
+  <path d="M200 60 C160 60 100 100 90 160 C80 220 120 280 200 310 C280 280 320 220 310 160 C300 100 240 60 200 60Z"
+        fill="url(#c1-petal1)" opacity="0.35"/>
+
+  <!-- Left petal accent -->
+  <path d="M130 100 C100 130 85 180 95 220 C105 260 140 280 170 270 C150 240 140 190 155 150 C160 130 145 110 130 100Z"
+        fill="url(#c1-petal2)" opacity="0.4"/>
+
+  <!-- Right petal accent -->
+  <path d="M270 100 C300 130 315 180 305 220 C295 260 260 280 230 270 C250 240 260 190 245 150 C240 130 255 110 270 100Z"
+        fill="url(#c1-petal2)" opacity="0.4"/>
+
+  <!-- Middle petals — layer 2 -->
+  <path d="M200 90 C170 90 125 120 118 170 C110 220 145 265 200 285 C255 265 290 220 282 170 C275 120 230 90 200 90Z"
+        fill="url(#c1-petal2)" opacity="0.5"/>
+
+  <!-- Inner petals — layer 3 -->
+  <path d="M200 120 C178 120 148 142 143 178 C138 214 162 246 200 260 C238 246 262 214 257 178 C252 142 222 120 200 120Z"
+        fill="url(#c1-petal3)" opacity="0.6"/>
+
+  <!-- Core circle with data node glow -->
+  <circle cx="200" cy="185" r="38" fill="url(#c1-core)" filter="url(#c1-glow)"/>
+
+  <!-- Data symbol: three connected dots forming a triangle -->
+  <circle cx="200" cy="172" r="5" fill="white"/>
+  <circle cx="186" cy="196" r="5" fill="white"/>
+  <circle cx="214" cy="196" r="5" fill="white"/>
+  <line x1="200" y1="172" x2="186" y2="196" stroke="white" stroke-width="2" opacity="0.7"/>
+  <line x1="200" y1="172" x2="214" y2="196" stroke="white" stroke-width="2" opacity="0.7"/>
+  <line x1="186" y1="196" x2="214" y2="196" stroke="white" stroke-width="2" opacity="0.7"/>
+
+  <!-- Stem -->
+  <path d="M200 310 Q200 340 198 360" stroke="#6A9B6A" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M198 340 Q188 335 182 328" stroke="#8FB88F" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>

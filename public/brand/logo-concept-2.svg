@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Concept 2: Abstract D-Artichoke Monogram
+       The letter D formed by artichoke petal shapes,
+       clean and modern, works great as favicon -->
+  <defs>
+    <linearGradient id="c2-grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6A9B6A"/>
+      <stop offset="100%" stop-color="#4A7A4A"/>
+    </linearGradient>
+    <linearGradient id="c2-grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8FB88F"/>
+      <stop offset="100%" stop-color="#6A9B6A"/>
+    </linearGradient>
+    <linearGradient id="c2-grad3" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#B7CFB7"/>
+      <stop offset="100%" stop-color="#8FB88F"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="200" cy="200" r="180" fill="#2D2A24"/>
+
+  <!-- D shape built from artichoke petals -->
+  <!-- Vertical stem of D -->
+  <rect x="115" y="100" width="18" height="200" rx="9" fill="url(#c2-grad1)"/>
+
+  <!-- Outer petal / outer arc of D -->
+  <path d="M133 100 C133 100 300 100 300 200 C300 300 133 300 133 300"
+        fill="none" stroke="url(#c2-grad3)" stroke-width="16" stroke-linecap="round" opacity="0.35"/>
+
+  <!-- Middle petal / mid arc -->
+  <path d="M133 125 C133 125 270 130 270 200 C270 270 133 275 133 275"
+        fill="none" stroke="url(#c2-grad2)" stroke-width="14" stroke-linecap="round" opacity="0.55"/>
+
+  <!-- Inner petal / inner arc -->
+  <path d="M133 150 C133 150 240 155 240 200 C240 245 133 250 133 250"
+        fill="none" stroke="url(#c2-grad1)" stroke-width="12" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- Core dot — data node -->
+  <circle cx="195" cy="200" r="14" fill="#6A9B6A"/>
+  <circle cx="195" cy="200" r="6" fill="#2D2A24"/>
+
+  <!-- Tiny data connection lines radiating from core -->
+  <line x1="209" y1="200" x2="228" y2="200" stroke="#8FB88F" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <line x1="203" y1="188" x2="215" y2="175" stroke="#8FB88F" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <line x1="203" y1="212" x2="215" y2="225" stroke="#8FB88F" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Small satellite data dots -->
+  <circle cx="232" cy="200" r="3" fill="#B7CFB7"/>
+  <circle cx="218" cy="172" r="3" fill="#B7CFB7"/>
+  <circle cx="218" cy="228" r="3" fill="#B7CFB7"/>
+</svg>

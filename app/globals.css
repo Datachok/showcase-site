@@ -87,7 +87,7 @@ html {
 }
 
 body {
-    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--font-dm-sans), -apple-system, BlinkMacSystemFont, sans-serif;
     color: var(--ink);
     background: var(--bg);
     line-height: 1.6;
@@ -96,7 +96,7 @@ body {
 }
 
 h1, h2, h3 {
-    font-family: 'DM Serif Display', Georgia, serif;
+    font-family: var(--font-dm-serif), Georgia, serif;
     line-height: 1.15;
 }
 
@@ -477,7 +477,7 @@ img {
 }
 
 .mobile-menu a {
-    font-family: 'DM Serif Display', serif;
+    font-family: var(--font-dm-serif), serif;
     font-size: 2rem;
     color: var(--ink);
     transition: color 0.3s;
@@ -500,7 +500,7 @@ img {
     border-radius: 100px;
     font-size: 0.95rem;
     font-weight: 500;
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-dm-sans), sans-serif;
     cursor: pointer;
     border: none;
     transition: var(--transition);
@@ -578,7 +578,7 @@ img {
     text-transform: uppercase;
     letter-spacing: 0.2em;
     color: var(--leaf-deep);
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-dm-sans), sans-serif;
     white-space: nowrap;
 }
 
@@ -723,7 +723,7 @@ img {
 }
 
 .service-number {
-    font-family: 'DM Serif Display', serif;
+    font-family: var(--font-dm-serif), serif;
     font-size: 0.85rem;
     color: var(--ink-muted);
     margin-bottom: 20px;
@@ -817,7 +817,7 @@ img {
 }
 
 .marquee-track span {
-    font-family: 'DM Serif Display', serif;
+    font-family: var(--font-dm-serif), serif;
     font-size: 1.3rem;
     color: var(--ink-muted);
     white-space: nowrap;
@@ -869,7 +869,7 @@ img {
 
 .step-num {
     position: absolute;
-    font-family: 'DM Serif Display', serif;
+    font-family: var(--font-dm-serif), serif;
     font-size: 1.4rem;
     color: var(--ink);
 }
@@ -934,7 +934,7 @@ img {
 
 .stat-num {
     display: block;
-    font-family: 'DM Serif Display', serif;
+    font-family: var(--font-dm-serif), serif;
     font-size: 2rem;
     color: var(--leaf-deep);
     margin-bottom: 4px;
@@ -957,7 +957,6 @@ img {
     position: absolute;
     border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
     transition: none;
-    /* Each layer will be animated via JS for the peel loop */
 }
 
 .art-layer-1 {
@@ -1092,177 +1091,6 @@ img {
 }
 
 /* ============================================
-   ART TIMELINE — Sticky Scroll-Driven Crossfade
-   ============================================ */
-
-.art-timeline {
-    position: relative;
-    z-index: 1;
-    padding: 80px 0 0;
-}
-
-.gallery-intro {
-    font-size: 1.05rem;
-    color: var(--ink-muted);
-    max-width: 600px;
-    margin: 20px auto 0;
-    line-height: 1.7;
-    text-align: center;
-}
-
-/* Scroll container — controls how long user scrolls through panels */
-.timeline-scroll {
-    position: relative;
-    height: 300vh;
-}
-
-/* Sticky viewport — stays pinned while user scrolls */
-.timeline-sticky {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    height: 70vh;
-    overflow: hidden;
-    border-radius: 20px;
-    margin: 0 auto;
-    max-width: 1200px;
-}
-
-/* Progress bar */
-.timeline-progress {
-    position: absolute;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200px;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 2px;
-    z-index: 10;
-}
-
-.timeline-progress-fill {
-    height: 100%;
-    width: 12.5%;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 2px;
-    transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* Counter */
-.timeline-counter {
-    position: absolute;
-    bottom: 36px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    color: rgba(255, 255, 255, 0.5);
-    z-index: 10;
-}
-
-/* ── Each painting panel — stacked, fade in/out ── */
-.timeline-panel {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    opacity: 0;
-    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-    pointer-events: none;
-}
-
-.timeline-panel.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.panel-bg {
-    position: absolute;
-    inset: -20px;
-    background-size: cover;
-    background-position: center;
-    filter: blur(4px) saturate(0.8) brightness(0.65);
-    transform: scale(1.08);
-    z-index: 0;
-    transition: transform 6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.timeline-panel.active .panel-bg {
-    transform: scale(1.14);
-}
-
-.panel-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg,
-        rgba(0, 0, 0, 0.55) 0%,
-        rgba(0, 0, 0, 0.3) 50%,
-        rgba(0, 0, 0, 0.5) 100%);
-    z-index: 1;
-}
-
-.panel-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 80px 24px;
-    max-width: 700px;
-    transform: translateY(20px);
-    opacity: 0;
-    transition: transform 0.9s 0.15s cubic-bezier(0.22, 1, 0.36, 1),
-                opacity 0.9s 0.15s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.timeline-panel.active .panel-content {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.panel-era {
-    display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.25em;
-    color: rgba(255, 255, 255, 0.6);
-    margin-bottom: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 6px 16px;
-    border-radius: 100px;
-}
-
-.panel-artist {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    color: #fff;
-    margin-bottom: 8px;
-    letter-spacing: -0.01em;
-    text-shadow: 0 2px 30px rgba(0,0,0,0.5);
-}
-
-.panel-title {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 1.05rem;
-    color: rgba(255, 255, 255, 0.7);
-    font-style: italic;
-    margin-bottom: 20px;
-}
-
-.panel-lesson {
-    font-size: 1.05rem;
-    color: rgba(255, 255, 255, 0.85);
-    line-height: 1.7;
-    max-width: 500px;
-    margin: 0 auto;
-    font-weight: 300;
-}
-
-/* ============================================
    THEY TRUST US
    ============================================ */
 
@@ -1331,7 +1159,7 @@ img {
 }
 
 .trust-name {
-    font-family: 'DM Serif Display', serif;
+    font-family: var(--font-dm-serif), serif;
     font-size: 1.3rem;
     color: var(--ink);
     letter-spacing: -0.01em;
@@ -1407,7 +1235,7 @@ img {
     backdrop-filter: blur(10px);
     border: 1.5px solid var(--card-border);
     border-radius: var(--radius);
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-dm-sans), sans-serif;
     font-size: 0.95rem;
     color: var(--ink);
     transition: var(--transition);
@@ -1493,7 +1321,7 @@ img {
 }
 
 .footer-links h4 {
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-dm-sans), sans-serif;
     font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -1625,19 +1453,6 @@ img {
     .hero-actions {
         flex-direction: column;
         align-items: center;
-    }
-
-    .timeline-scroll {
-        height: 250vh;
-    }
-
-    .timeline-sticky {
-        height: 60vh;
-        border-radius: 12px;
-    }
-
-    .panel-artist {
-        font-size: 1.8rem;
     }
 
     .trust-logos {

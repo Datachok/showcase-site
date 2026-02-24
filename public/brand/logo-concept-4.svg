@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Concept 4: Geometric Artichoke Shield
+       Modern, bold, flat design. Layered chevrons
+       forming an artichoke silhouette. Very brandable. -->
+  <defs>
+    <linearGradient id="c4-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D2A24"/>
+      <stop offset="100%" stop-color="#1A1815"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark rounded square background -->
+  <rect width="400" height="400" rx="60" fill="url(#c4-bg)"/>
+
+  <!-- Artichoke built from stacked chevron/petal shapes -->
+
+  <!-- Layer 1 — outermost, lightest -->
+  <path d="M200 70 L120 155 L200 220 L280 155 Z" fill="#B7CFB7" opacity="0.3"/>
+
+  <!-- Layer 2 -->
+  <path d="M200 100 L135 170 L200 225 L265 170 Z" fill="#8FB88F" opacity="0.45"/>
+
+  <!-- Layer 3 -->
+  <path d="M200 128 L150 182 L200 228 L250 182 Z" fill="#6A9B6A" opacity="0.6"/>
+
+  <!-- Layer 4 — innermost petal -->
+  <path d="M200 152 L165 195 L200 230 L235 195 Z" fill="#6A9B6A" opacity="0.85"/>
+
+  <!-- Core diamond — the heart -->
+  <path d="M200 175 L183 200 L200 225 L217 200 Z" fill="#FFF8F0"/>
+
+  <!-- Bottom — stem section with data flow -->
+  <rect x="196" y="228" width="8" height="65" rx="4" fill="#6A9B6A" opacity="0.6"/>
+
+  <!-- Small leaf accents on stem -->
+  <path d="M196 260 C188 252 178 250 172 252" stroke="#8FB88F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M204 272 C212 264 222 262 228 264" stroke="#8FB88F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Data circuit dots at the tips of the chevrons -->
+  <circle cx="200" cy="70" r="5" fill="#B7CFB7" opacity="0.5"/>
+  <circle cx="120" cy="155" r="4" fill="#B7CFB7" opacity="0.4"/>
+  <circle cx="280" cy="155" r="4" fill="#B7CFB7" opacity="0.4"/>
+  <circle cx="200" cy="320" r="4" fill="#6A9B6A" opacity="0.6"/>
+
+  <!-- Subtle connecting lines — data network -->
+  <line x1="200" y1="75" x2="124" y2="151" stroke="#B7CFB7" stroke-width="1" opacity="0.2"/>
+  <line x1="200" y1="75" x2="276" y2="151" stroke="#B7CFB7" stroke-width="1" opacity="0.2"/>
+</svg>

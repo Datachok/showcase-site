@@ -1,0 +1,194 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6A9B6A"/>
+      <stop offset="100%" stop-color="#4A7A4A"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8FB88F"/>
+      <stop offset="100%" stop-color="#6A9B6A"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-sm">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <style>
+    /* Outer petals — slow counter-rotate */
+    .outer-ring {
+      transform-origin: 200px 192px;
+      animation: outerSpin 40s linear infinite;
+    }
+    @keyframes outerSpin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* Inner petals — opposite rotation */
+    .inner-ring {
+      transform-origin: 200px 192px;
+      animation: innerSpin 30s linear infinite reverse;
+    }
+    @keyframes innerSpin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* Each outer petal breathes */
+    .petal-outer {
+      animation: petalBreath 6s ease-in-out infinite;
+    }
+    .petal-outer:nth-child(2) { animation-delay: -0.75s; }
+    .petal-outer:nth-child(3) { animation-delay: -1.5s; }
+    .petal-outer:nth-child(4) { animation-delay: -2.25s; }
+    .petal-outer:nth-child(5) { animation-delay: -3s; }
+    .petal-outer:nth-child(6) { animation-delay: -3.75s; }
+    .petal-outer:nth-child(7) { animation-delay: -4.5s; }
+    .petal-outer:nth-child(8) { animation-delay: -5.25s; }
+    @keyframes petalBreath {
+      0%, 100% { opacity: 0.35; transform: scale(1); }
+      50%      { opacity: 0.6;  transform: scale(1.04); }
+    }
+
+    /* Inner petals pulse differently */
+    .petal-inner {
+      animation: innerPulse 4s ease-in-out infinite;
+    }
+    .petal-inner:nth-child(2) { animation-delay: -0.66s; }
+    .petal-inner:nth-child(3) { animation-delay: -1.33s; }
+    .petal-inner:nth-child(4) { animation-delay: -2s; }
+    .petal-inner:nth-child(5) { animation-delay: -2.66s; }
+    .petal-inner:nth-child(6) { animation-delay: -3.33s; }
+    @keyframes innerPulse {
+      0%, 100% { opacity: 0.55; }
+      50%      { opacity: 0.85; }
+    }
+
+    /* Core heartbeat */
+    .core-outer {
+      transform-origin: 200px 192px;
+      animation: corePulse 3s ease-in-out infinite;
+    }
+    @keyframes corePulse {
+      0%, 100% { transform: scale(1); filter: none; }
+      50%      { transform: scale(1.1); filter: url(#glow); }
+    }
+
+    .core-inner {
+      transform-origin: 200px 192px;
+      animation: coreGlow 3s ease-in-out infinite;
+    }
+    @keyframes coreGlow {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.15); }
+    }
+
+    /* Data dots orbiting */
+    .data-dot {
+      animation: orbit 8s linear infinite;
+      transform-origin: 200px 192px;
+    }
+    .data-dot:nth-child(2) { animation-delay: -2s; animation-duration: 10s; }
+    .data-dot:nth-child(3) { animation-delay: -4s; animation-duration: 12s; }
+    .data-dot:nth-child(4) { animation-delay: -6s; animation-duration: 9s; }
+    .data-dot:nth-child(5) { animation-delay: -1s; animation-duration: 11s; }
+    .data-dot:nth-child(6) { animation-delay: -3s; animation-duration: 7s; }
+    .data-dot:nth-child(7) { animation-delay: -5s; animation-duration: 13s; }
+    .data-dot:nth-child(8) { animation-delay: -7s; animation-duration: 8.5s; }
+    @keyframes orbit {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* Data dots also fade in/out */
+    .data-dot circle {
+      animation: dotPulse 3s ease-in-out infinite;
+    }
+    .data-dot:nth-child(2) circle { animation-delay: -0.5s; }
+    .data-dot:nth-child(3) circle { animation-delay: -1s; }
+    .data-dot:nth-child(4) circle { animation-delay: -1.5s; }
+    .data-dot:nth-child(5) circle { animation-delay: -2s; }
+    .data-dot:nth-child(6) circle { animation-delay: -2.5s; }
+    .data-dot:nth-child(7) circle { animation-delay: -0.8s; }
+    .data-dot:nth-child(8) circle { animation-delay: -1.8s; }
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.3; r: 2.5; }
+      50%      { opacity: 1; r: 4; }
+    }
+
+    /* Binary text shimmer */
+    .binary {
+      animation: binaryFlicker 4s ease-in-out infinite;
+    }
+    .binary:nth-child(2) { animation-delay: -1s; }
+    .binary:nth-child(3) { animation-delay: -2s; }
+    .binary:nth-child(4) { animation-delay: -3s; }
+    @keyframes binaryFlicker {
+      0%, 100% { opacity: 0; }
+      30%, 70% { opacity: 0.35; }
+    }
+
+    /* Connection lines pulse */
+    .conn-line {
+      animation: linePulse 5s ease-in-out infinite;
+    }
+    .conn-line:nth-child(2) { animation-delay: -1.6s; }
+    .conn-line:nth-child(3) { animation-delay: -3.3s; }
+    @keyframes linePulse {
+      0%, 100% { opacity: 0; stroke-dashoffset: 20; }
+      50%      { opacity: 0.5; stroke-dashoffset: 0; }
+    }
+  </style>
+
+  <!-- ═══ OUTER PETAL RING ═══ -->
+  <g class="outer-ring">
+    <path class="petal-outer" d="M200 50 C215 50 230 65 230 90 C230 115 215 135 200 140 C185 135 170 115 170 90 C170 65 185 50 200 50Z" fill="#B7CFB7"/>
+    <path class="petal-outer" d="M260 80 C272 88 280 105 275 128 C270 150 255 165 240 165 C230 155 225 135 232 115 C238 95 250 82 260 80Z" fill="#8FB88F"/>
+    <path class="petal-outer" d="M300 150 C308 165 305 185 292 202 C280 218 260 225 248 220 C242 207 248 188 260 175 C272 162 290 155 300 150Z" fill="url(#g2)"/>
+    <path class="petal-outer" d="M290 240 C290 258 278 275 260 282 C242 290 222 285 215 275 C215 260 225 245 240 238 C255 232 275 233 290 240Z" fill="url(#g1)"/>
+    <path class="petal-outer" d="M240 310 C228 318 210 318 195 310 C180 302 172 285 175 272 C185 268 200 272 212 282 C222 290 232 302 240 310Z" fill="url(#g1)"/>
+    <path class="petal-outer" d="M150 290 C138 282 130 265 135 248 C140 230 155 218 168 218 C175 228 172 248 162 262 C152 276 142 285 150 290Z" fill="url(#g2)"/>
+    <path class="petal-outer" d="M108 220 C100 205 102 185 115 170 C128 155 148 148 158 155 C162 168 152 188 140 200 C128 212 112 218 108 220Z" fill="#8FB88F"/>
+    <path class="petal-outer" d="M120 145 C118 128 128 110 145 100 C162 90 180 92 185 102 C182 115 168 128 152 135 C138 140 124 142 120 145Z" fill="#B7CFB7"/>
+  </g>
+
+  <!-- ═══ INNER PETAL RING ═══ -->
+  <g class="inner-ring">
+    <path class="petal-inner" d="M200 110 C210 110 218 120 218 135 C218 150 210 160 200 162 C190 160 182 150 182 135 C182 120 190 110 200 110Z" fill="url(#g1)"/>
+    <path class="petal-inner" d="M238 138 C245 145 245 158 238 170 C230 182 218 186 212 180 C210 170 215 158 225 150 C232 144 238 140 238 138Z" fill="url(#g1)"/>
+    <path class="petal-inner" d="M248 195 C248 208 238 220 225 225 C212 228 200 222 198 212 C202 205 215 200 228 200 C238 200 246 198 248 195Z" fill="url(#g1)"/>
+    <path class="petal-inner" d="M222 245 C215 252 202 255 190 248 C180 242 175 228 180 220 C190 220 200 228 208 238 C214 244 220 248 222 245Z" fill="url(#g1)"/>
+    <path class="petal-inner" d="M168 240 C158 235 152 222 155 208 C158 195 168 188 175 192 C178 202 172 215 165 225 C160 232 160 238 168 240Z" fill="url(#g1)"/>
+    <path class="petal-inner" d="M155 185 C152 172 158 158 170 150 C182 142 195 145 198 155 C192 162 178 168 168 175 C160 180 155 185 155 185Z" fill="url(#g1)"/>
+  </g>
+
+  <!-- ═══ DATA DOTS ORBITING ═══ -->
+  <g class="data-dot"><circle cx="200" cy="112" r="3" fill="#B7CFB7" filter="url(#glow-sm)"/></g>
+  <g class="data-dot"><circle cx="255" cy="138" r="3" fill="#8FB88F" filter="url(#glow-sm)"/></g>
+  <g class="data-dot"><circle cx="270" cy="195" r="3" fill="#6A9B6A" filter="url(#glow-sm)"/></g>
+  <g class="data-dot"><circle cx="245" cy="248" r="3" fill="#6A9B6A" filter="url(#glow-sm)"/></g>
+  <g class="data-dot"><circle cx="195" cy="272" r="3" fill="#8FB88F" filter="url(#glow-sm)"/></g>
+  <g class="data-dot"><circle cx="140" cy="245" r="3" fill="#B7CFB7" filter="url(#glow-sm)"/></g>
+  <g class="data-dot"><circle cx="128" cy="185" r="3" fill="#8FB88F" filter="url(#glow-sm)"/></g>
+  <g class="data-dot"><circle cx="148" cy="132" r="3" fill="#B7CFB7" filter="url(#glow-sm)"/></g>
+
+  <!-- ═══ CONNECTION LINES (pulsing data flow) ═══ -->
+  <line class="conn-line" x1="200" y1="168" x2="200" y2="115" stroke="#8FB88F" stroke-width="1" stroke-dasharray="4 4"/>
+  <line class="conn-line" x1="218" y1="182" x2="258" y2="142" stroke="#8FB88F" stroke-width="1" stroke-dasharray="4 4"/>
+  <line class="conn-line" x1="182" y1="202" x2="138" y2="240" stroke="#8FB88F" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- ═══ CORE — heartbeat ═══ -->
+  <circle class="core-outer" cx="200" cy="192" r="24" fill="url(#g1)"/>
+  <circle class="core-inner" cx="200" cy="192" r="14" fill="#FFF8F0"/>
+
+  <!-- ═══ BINARY TEXT SHIMMER ═══ -->
+  <text class="binary" x="168" y="174" font-family="monospace" font-size="7" fill="#6A9B6A">01</text>
+  <text class="binary" x="224" y="178" font-family="monospace" font-size="7" fill="#6A9B6A">10</text>
+  <text class="binary" x="173" y="218" font-family="monospace" font-size="7" fill="#6A9B6A">11</text>
+  <text class="binary" x="220" y="212" font-family="monospace" font-size="7" fill="#6A9B6A">01</text>
+</svg>
