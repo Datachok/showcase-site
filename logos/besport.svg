@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 80" width="220" height="80">
+  <circle cx="35" cy="40" r="30" fill="none" stroke="#FF0040" stroke-width="4"/>
+  <text x="35" y="50" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" fill="#FF0040">be</text>
+  <text x="82" y="50" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="300" fill="#FF0040" letter-spacing="1">sport</text>
+  <text x="193" y="28" text-anchor="start" font-family="Arial, sans-serif" font-size="14" fill="#FF0040">®</text>
+</svg>

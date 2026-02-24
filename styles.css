@@ -1098,7 +1098,7 @@ img {
 .art-timeline {
     position: relative;
     z-index: 1;
-    padding: 120px 0 0;
+    padding: 80px 0 0;
 }
 
 .gallery-intro {
@@ -1110,10 +1110,10 @@ img {
     text-align: center;
 }
 
-/* Scroll container — tall enough for 8 panels of scrolling */
+/* Scroll container — controls how long user scrolls through panels */
 .timeline-scroll {
     position: relative;
-    height: 500vh; /* 8 panels × ~62vh each for scroll distance */
+    height: 300vh;
 }
 
 /* Sticky viewport — stays pinned while user scrolls */
@@ -1121,8 +1121,11 @@ img {
     position: sticky;
     top: 0;
     width: 100%;
-    height: 100vh;
+    height: 70vh;
     overflow: hidden;
+    border-radius: 20px;
+    margin: 0 auto;
+    max-width: 1200px;
 }
 
 /* Progress bar */
@@ -1288,28 +1291,19 @@ img {
     flex-wrap: wrap;
 }
 
-.trust-icon {
-    color: var(--leaf-deep);
-    margin-bottom: 8px;
-    opacity: 0.7;
-    transition: opacity 0.3s, transform 0.3s;
-}
-
-.trust-icon-img {
+.trust-logo-img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    border-radius: 10px;
     margin-bottom: 12px;
-    border-radius: 8px;
     transition: transform 0.3s, filter 0.3s;
-    filter: grayscale(0.3);
+    filter: grayscale(0.2);
 }
 
-.trust-logo:hover .trust-icon-img {
+.trust-logo:hover .trust-logo-img {
     transform: scale(1.08);
     filter: grayscale(0);
-}
-
-.trust-logo:hover .trust-icon {
-    opacity: 1;
-    transform: scale(1.08);
 }
 
 .trust-logo {
@@ -1634,11 +1628,16 @@ img {
     }
 
     .timeline-scroll {
-        height: 400vh;
+        height: 250vh;
+    }
+
+    .timeline-sticky {
+        height: 60vh;
+        border-radius: 12px;
     }
 
     .panel-artist {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .trust-logos {
